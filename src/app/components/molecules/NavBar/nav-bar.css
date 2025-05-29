@@ -1,0 +1,58 @@
+.Nav {
+  height: 125px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-white);
+}
+
+.Nav-container {
+  display: grid;
+  grid-template-columns: [first] var(--space-40) [list] auto [locale] var(
+      --space-40
+    );
+  padding: var(--space-5) var(--space-12);
+  max-width: 1440px;
+  width: 100%;
+}
+
+.Nav-logo-link {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.Nav-logo {
+  width: var(--space-40);
+}
+
+.Nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-8);
+  height: 100%;
+}
+
+.Nav-list-item {
+  font-size: var(--font-size-sm);
+  color: var(--font-black);
+  cursor: pointer;
+}
+
+.Nav-local-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Nav-local-select {
+  background-color: transparent;
+  font-size: var(--font-size-sm);
+  color: var(--font-black);
+  height: var(--space-6);
+  border: none;
+}

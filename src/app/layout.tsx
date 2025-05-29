@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import NavBar from "@components/molecules/NavBar";
+import navBarProps from "@resources/navBarProps";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -22,9 +25,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { logo, locals, navList } = navBarProps;
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <NavBar logo={logo} locals={locals} navList={navList} />
         {children}
       </body>
     </html>
