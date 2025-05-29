@@ -1,9 +1,36 @@
 .Nav {
-  height: 125px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  display: none;
+}
+
+@media screen and (min-width: 1280px) {
+  .Nav {
+    height: 125px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: var(--color-white);
+  }
+}
+
+.Nav-mobile {
+  height: var(--space-20);
+  padding: 0 var(--space-5);
   background-color: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (min-width: 1280px) {
+  .Nav-mobile {
+    display: none;
+  }
+}
+
+.Nav-mobile-hamburger {
+  width: 25px;
+  height: 18px;
+  background-color: var(--color-black);
 }
 
 .Nav-container {
@@ -24,7 +51,13 @@
 }
 
 .Nav-logo {
-  width: var(--space-40);
+  width: 120px;
+}
+
+@media screen and (min-width: 1280px) {
+  .Nav-logo {
+    max-width: var(--space-40);
+  }
 }
 
 .Nav-list {
