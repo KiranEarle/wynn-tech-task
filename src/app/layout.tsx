@@ -1,18 +1,41 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import NavBar from "@components/molecules/NavBar";
 import navBarProps from "@resources/navBarProps";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const avenirFont = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Avenir-LT-Std/Avenir-LT-Std-35-Light.otf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Avenir-LT-Std/Avenir-LT-Std-65-Medium.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Avenir-LT-Std/Avenir-LT-Std-85-Heavy.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-avenir-lt",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const bigCaslon = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Big-Caslon/big-caslon-regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-big-caslon",
 });
 
 export const metadata: Metadata = {
@@ -28,7 +51,7 @@ export default function RootLayout({
   const { logo, locals, navList } = navBarProps;
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${avenirFont.variable} ${bigCaslon.variable}`}>
         <NavBar logo={logo} locals={locals} navList={navList} />
         {children}
       </body>
