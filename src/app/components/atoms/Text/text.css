@@ -1,0 +1,94 @@
+.Text-h1-heading {
+  font-size: var(--font-size-4xl);
+  font-family: var(--font-big-caslon);
+  font-weight: 400;
+}
+
+.Text-h1-normal {
+  font-size: var(--font-size-4xl);
+  font-family: var(--font-avenir-lt);
+  font-weight: 400;
+}
+
+.Text-h2-heading {
+  font-size: var(--font-size-2xl);
+  font-family: var(--font-big-caslon);
+  font-weight: 400;
+}
+
+.Text-h2-normal {
+  font-size: var(--font-size-2xl);
+  font-family: var(--font-avenir-lt);
+  font-weight: 400;
+}
+
+.Text-h3-heading {
+  font-size: var(--font-size-lg);
+  font-family: var(--font-big-caslon);
+  font-weight: 400;
+}
+
+.Text-h3-normal {
+  font-size: var(--font-size-lg);
+  font-family: var(--font-avenir-lt);
+  font-weight: 400;
+}
+
+.Text-h4-heading {
+  font-size: var(--font-size-md);
+  font-family: var(--font-big-caslon);
+  font-weight: 400;
+}
+
+.Text-h4-normal {
+  font-size: var(--font-size-md);
+  font-family: var(--font-avenir-lt);
+  font-weight: 400;
+}
+
+.Text-h5-heading {
+  font-size: var(--font-size-md);
+  font-family: var(--font-big-caslon);
+  font-weight: 400;
+}
+
+.Text-h5-normal {
+  font-size: var(--font-size-md);
+  font-family: var(--font-avenir-lt);
+  font-weight: 400;
+}
+
+.Text-h6-heading {
+  font-size: var(--font-size-md);
+  font-family: var(--font-big-caslon);
+  font-weight: 400;
+}
+
+.Text-6-normal {
+  font-size: var(--font-size-md);
+  font-family: var(--font-avenir-lt);
+  font-weight: 400;
+}
+
+.Text-p-heading {
+  font-size: var(--font-size-md);
+  font-family: var(--font-big-caslon);
+}
+
+.Text-p-normal {
+  font-size: var(--font-size-md);
+  font-family: var(--font-avenir-lt);
+  font-weight: 400;
+}
+
+.Text-span-heading {
+  font-size: var(--font-size-md);
+  font-family: var(--font-big-caslon);
+  font-weight: 400;
+}
+
+.Text-span-normal {
+  font-size: var(--font-size-md);
+  font-family: var(--font-avenir-lt);
+  font-weight: 400;
+}
