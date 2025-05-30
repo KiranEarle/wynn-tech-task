@@ -8,6 +8,8 @@ const customJestConfig = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
     "^@components/(.*)$": "<rootDir>/src/app/components/$1",
+    "^@resources/(.*)$": "<rootDir>/src/app/resources/$1",
+    "^@pages/(.*)$": "<rootDir>/src/app/page/$1",
     "^@public/(.*)$": "<rootDir>/public/$1",
   },
 

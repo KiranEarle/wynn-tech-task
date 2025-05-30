@@ -1,0 +1,6 @@
+.Registration-page {
+  width: 100%;
+  max-width: 630px;
+  margin: auto;
+  padding: var(--space-12) 0;
+}
