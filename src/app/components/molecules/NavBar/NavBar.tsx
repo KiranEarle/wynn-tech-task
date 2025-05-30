@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
+import Chevron from "@public/chevron_icon.svg";
 
 import AnimatedHamburgerIcon from "@components/atoms/AnimatedHamburgerIcon";
 
@@ -73,6 +75,12 @@ const NavBar = ({ logo, navList, locals }: NavBarProps) => {
                 <p>
                   <a href={item.href}>{item.label?.toUpperCase()}</a>
                 </p>
+                <Chevron
+                  viewBox="0 0 100 100"
+                  className="Nav-list-chevron-mobile"
+                  height={20}
+                  width={20}
+                />
               </li>
             );
           })}
