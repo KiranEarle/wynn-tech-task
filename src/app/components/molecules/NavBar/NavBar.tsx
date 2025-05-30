@@ -76,6 +76,7 @@ const NavBar = ({ logo, navList, locals }: NavBarProps) => {
                   <a href={item.href}>{item.label?.toUpperCase()}</a>
                 </p>
                 <Chevron
+                  data-testid="chevron-icon"
                   viewBox="0 0 100 100"
                   className="Nav-list-chevron-mobile"
                   height={20}
