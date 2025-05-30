@@ -1,3 +1,9 @@
+"use client";
+
+import { useState } from "react";
+
+import AnimatedHamburgerIcon from "@components/atoms/AnimatedHamburgerIcon";
+
 import "./nav-bar.css";
 
 export type NavBarProps = {
@@ -16,8 +22,9 @@ export type NavBarProps = {
 };
 
 const NavBar = ({ logo, navList, locals }: NavBarProps) => {
+  const [openMobileNav, setOpenMobileNav] = useState(false);
   return (
-    <>
+    <header className="Header-nav">
       <div className="Nav">
         <div className="Nav-container">
           <a className="Nav-logo-link" href={logo.href}>
@@ -51,9 +58,27 @@ const NavBar = ({ logo, navList, locals }: NavBarProps) => {
         <a className="Nav-logo-link" href={logo.href}>
           <img src={logo.src} alt={logo.alt} className="Nav-logo" />
         </a>
-        <div className="Nav-mobile-hamburger"></div>
+        <AnimatedHamburgerIcon
+          isOpen={openMobileNav}
+          onClick={setOpenMobileNav}
+        />
       </div>
-    </>
+      <div
+        className={`Nav-list-mobile-container ${openMobileNav ? "" : "hide"}`}
+      >
+        <ol>
+          {navList?.map((item) => {
+            return (
+              <li className="Nav-list-items-mobile" key={item.label}>
+                <p>
+                  <a href={item.href}>{item.label?.toUpperCase()}</a>
+                </p>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </header>
   );
 };
 

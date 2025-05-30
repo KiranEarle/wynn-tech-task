@@ -1,3 +1,10 @@
+.Header-nav {
+  top: 0;
+  left: 0;
+  position: sticky;
+  background-color: var(--color-white);
+}
+
 .Nav {
   display: none;
 }
@@ -8,13 +15,12 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: var(--color-white);
   }
 }
 
 .Nav-mobile {
   height: var(--space-20);
-  padding: 0 var(--space-5);
+  padding: 0 var(--space-6);
   background-color: var(--color-white);
   display: flex;
   justify-content: space-between;
@@ -45,9 +51,15 @@
 
 .Nav-logo-link {
   height: 100%;
-  width: 100%;
+  width: auto;
   display: flex;
   align-items: center;
+}
+
+@media screen and (min-width: 1280px) {
+  .Nav-logo-link {
+    width: 100%;
+  }
 }
 
 .Nav-logo {
@@ -88,4 +100,37 @@
   color: var(--font-black);
   height: var(--space-6);
   border: none;
+}
+
+.Nav-list-mobile-container {
+  height: calc(-78px + 100dvh);
+}
+
+@media screen and (min-width: 1280px) {
+  .Nav-list-mobile-container {
+    display: none;
+  }
+}
+
+.Nav-list-mobile-container.active {
+  display: block;
+}
+
+.Nav-list-items-mobile {
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--color-light-grey);
+  list-style: none;
+}
+
+.Nav-list-items-mobile p {
+  display: flex;
+  padding: 0 var(--space-6);
+  color: var(--color-brown);
+  width: 100%;
+  height: 30px;
+  align-items: center;
+}
+
+.Nav-list-items-mobile p a {
+  width: 100%;
 }
