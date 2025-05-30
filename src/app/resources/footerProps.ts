@@ -23,6 +23,13 @@ const footerProps: FooterProps = {
     { label: "Encore Boston Harbor", href: "/" },
     { label: "Wynn Macau", href: "/" },
   ],
+  socialIcons: [
+    { src: "/facebook-icon.svg", alt: "facebook-icon", href: "/" },
+    { src: "/android-icon.svg", alt: "android-icon", href: "/" },
+    { src: "/apple-icon.svg", alt: "apple-icon", href: "/" },
+    { src: "/instagram-icon.svg", alt: "instagram-icon", href: "/" },
+    { src: "/x-icon.svg", alt: "x-icon", href: "/" },
+  ],
 };
 
 export default footerProps;

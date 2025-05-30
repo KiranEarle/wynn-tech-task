@@ -52,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { logo, locals, navList } = navBarProps;
-  const { columnOne, columnTwo, columnThree } = footerProps;
+  const { columnOne, columnTwo, columnThree, socialIcons } = footerProps;
   return (
     <html lang="en">
       <body className={`${avenirFont.variable} ${bigCaslon.variable}`}>
@@ -62,6 +62,7 @@ export default function RootLayout({
           columnOne={columnOne}
           columnTwo={columnTwo}
           columnThree={columnThree}
+          socialIcons={socialIcons}
         />
       </body>
     </html>
