@@ -23,6 +23,7 @@
   font-family: var(--font-avenir-lt);
   padding: 0 var(--font-size-sm);
   margin-bottom: var(--space-6);
+  cursor: pointer;
 }
 
 .Select-field-list {
@@ -35,8 +36,31 @@
   border-radius: 4px;
   border: 1.5px solid var(--color-border-grey);
   overflow-y: scroll;
+  cursor: pointer;
 }
 
 .Select-field-list-item {
   padding: var(--font-size-sm) var(--font-size-sm);
+  background-color: var(--color-white);
+  color: var(--font-black);
+  font-size: var(--font-size-md);
+  font-family: var(--font-avenir-lt);
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+}
+
+.selected-option {
+  background-color: var(--color-border-grey);
+}
+
+.chevron {
+  height: 10px;
+  width: 10px;
+  transform: rotate(90deg);
+  position: absolute;
+  top: 50px;
+  right: 20px;
 }

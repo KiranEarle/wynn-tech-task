@@ -1,12 +1,13 @@
 "use client";
 
-// import { useState } from "react";
-
 import Text from "@components/atoms/Text";
 import InputField from "@components/atoms/InputField";
 import SelectField from "@components/atoms/SelectField";
 
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
+
+import countries from "@resources/countries";
+import genders from "@resources/genders";
 
 import "./registration-form.css";
 
@@ -17,11 +18,6 @@ type RegistrationFormProps = {
 };
 
 const RegistrationForm = ({}: RegistrationFormProps) => {
-  // const [gender, setGender] = useState("");
-  const tempOptions = [
-    { label: "Male", value: "male" },
-    { label: "Female", value: "female" },
-  ];
   return (
     <form className="Registration-form">
       <div className="Registration-form-personal-info">
@@ -32,7 +28,7 @@ const RegistrationForm = ({}: RegistrationFormProps) => {
           decoration="underline"
           className="Registration-form-headers"
         />
-        <div>
+        <div className="Registration-name-section">
           <InputField
             label="First Name"
             placeholder="Enter first name..."
@@ -51,9 +47,17 @@ const RegistrationForm = ({}: RegistrationFormProps) => {
           id="gender"
           required
           placeholder="Select gender..."
-          options={tempOptions}
+          options={genders}
+          onChange={(e) => console.log(e.target.value)}
         />
-        <SelectField label="Your residence country" required />
+        <SelectField
+          label="Your residence country"
+          id="country"
+          required
+          placeholder="Select residence country..."
+          options={countries}
+          onChange={(e) => console.log(e.target.value)}
+        />
       </div>
       <div>
         <Text
@@ -63,7 +67,13 @@ const RegistrationForm = ({}: RegistrationFormProps) => {
           decoration="underline"
           className="Registration-form-headers"
         />
-        <InputField label="Email" required id="email" />
+        <InputField
+          label="Email"
+          type="email"
+          placeholder="Enter email address..."
+          required
+          id="email"
+        />
       </div>
       <div></div>
     </form>

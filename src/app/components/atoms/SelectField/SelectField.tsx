@@ -1,64 +1,94 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import "./select-field.css";
 
 export type SelectFieldProps = {
   label?: string;
   placeholder?: string;
-  options?: { value: string | number; label: string | number }[];
+  options?: { value: string; label: string }[];
+  onChange?: (e: React.MouseEvent<HTMLInputElement>) => void;
 } & React.SelectHTMLAttributes<HTMLInputElement>;
 
 const SelectField = (props: SelectFieldProps) => {
+  const { id, label, required, placeholder, options, onChange } = props;
+
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState<{
-    label: string | number;
-    value: string | number;
+    label: string;
+    value: string;
   }>({ label: "", value: "" });
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const { id, label, required, placeholder, options, onChange } = props;
-  const handleOnChange = (e) => {
+  const handleOnChange = (e: React.MouseEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(e);
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <label
-      htmlFor={id}
-      className="Select-field"
-      onClick={() => setIsOpen((prev) => !prev)}
-      // onBlur={() => setIsOpen(false)}
-    >
-      <label htmlFor={id} className="Select-field-label">
-        {label} {required ? "*" : ""}
-      </label>
-      <input
-        className="Select-field-internal"
-        placeholder={placeholder}
-        onChange={handleOnChange}
-        value={value.label}
-        readOnly
-        id={id}
-        {...props}
-      />
-      <div
-        onClick={() => setIsOpen(true)}
-        className={`${isOpen ? "Select-field-list" : "hide"}`}
+    <div ref={wrapperRef}>
+      <label
+        htmlFor={id}
+        className="Select-field"
+        onClick={() => setIsOpen((prev) => !prev)}
       >
-        {options?.map((option) => {
-          return (
-            <div
-              className="Select-field-list-item"
-              onClick={() => setValue(option)}
-              key={option.label}
-            >
-              {option.label}
-            </div>
-          );
-        })}
-      </div>
-    </label>
+        <label htmlFor={id} className="Select-field-label">
+          {label} {required ? "*" : ""}
+        </label>
+        <input
+          className="Select-field-internal"
+          placeholder={placeholder}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setIsOpen((prev) => !prev);
+            }
+          }}
+          value={value.label}
+          readOnly
+          id={id}
+          {...{ props, options: "" }}
+        />
+        <img src="/chevron_icon.svg" alt="chevron" className="chevron" />
+        <div
+          onClick={() => setIsOpen(true)}
+          className={`${isOpen ? "Select-field-list" : "hide"}`}
+        >
+          {options?.map((option) => {
+            return (
+              <input
+                className={`Select-field-list-item ${
+                  value.label === option.label ? "selected-option" : ""
+                }`}
+                id={option.value as string}
+                onClick={(e) => {
+                  setValue(option);
+                  handleOnChange(e);
+                }}
+                key={option.label}
+                type="button"
+                value={option.label}
+              />
+            );
+          })}
+        </div>
+      </label>
+    </div>
   );
 };
 
