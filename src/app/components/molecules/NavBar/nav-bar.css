@@ -3,6 +3,7 @@
   left: 0;
   position: sticky;
   background-color: var(--color-white);
+  z-index: 999999;
 }
 
 .Nav {

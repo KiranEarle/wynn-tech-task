@@ -2,7 +2,12 @@
 }
 
 .Registration-form-personal-info {
+  margin-bottom: var(--space-8);
 }
 
 .Registration-form-personal-info-heading {
+}
+
+.Registration-form-headers {
+  margin-bottom: var(--space-8);
 }

@@ -22,11 +22,11 @@ const Text = ({
   if (textDecoration) {
     return createElement(
       "div",
-      { className: ` ${textDecoration}` },
+      { className: ` ${textDecoration} ${className}` },
       createElement(
         type,
         {
-          className: `Text-${type}-${priority} ${className}`,
+          className: `Text-${type}-${priority}`,
         },
         text
       )
