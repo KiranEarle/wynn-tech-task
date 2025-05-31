@@ -3,6 +3,7 @@
 import Text from "@components/atoms/Text";
 import InputField from "@components/atoms/InputField";
 import SelectField from "@components/atoms/SelectField";
+import PhoneNumberInput from "@components/atoms/PhoneNumberInput";
 
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 
@@ -51,7 +52,7 @@ const RegistrationForm = ({}: RegistrationFormProps) => {
           onChange={(e) => console.log(e.target.value)}
         />
         <SelectField
-          label="Your residence country"
+          label="Your Residence Country"
           id="country"
           required
           placeholder="Select residence country..."
@@ -73,6 +74,12 @@ const RegistrationForm = ({}: RegistrationFormProps) => {
           placeholder="Enter email address..."
           required
           id="email"
+        />
+        <PhoneNumberInput
+          label="Phone Number"
+          required
+          id="phoneNumber"
+          onChange={(data) => console.log({ data })}
         />
       </div>
       <div></div>

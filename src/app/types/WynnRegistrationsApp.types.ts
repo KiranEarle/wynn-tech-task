@@ -18,6 +18,13 @@ namespace WynnRegistrationsApp {
     email: FormInputField;
     phoneNumber: FormSelectField;
   };
+
+  export type PhoneNumberFieldData = {
+    code: string;
+    flagImgSrc: string;
+    label: string;
+    countryCode: string;
+  };
 }
 
 export default WynnRegistrationsApp;
