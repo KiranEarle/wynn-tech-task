@@ -2,5 +2,14 @@
   width: 100%;
   max-width: 630px;
   margin: auto;
-  padding: var(--space-12) 0;
+  padding: var(--space-12) var(--space-6);
+}
+
+.Registration-page-top-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Registration-page-title {
+  margin-bottom: var(--font-size-xl);
 }
