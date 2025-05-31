@@ -7,6 +7,7 @@ export type TextProp = {
   text?: string;
   priority?: "heading" | "normal";
   className?: string;
+  decoration?: "" | "underline" | "bold";
 };
 
 const Text = ({
@@ -14,7 +15,24 @@ const Text = ({
   text = "",
   priority = "normal",
   className = "",
+  decoration = "",
 }: TextProp) => {
+  const textDecoration = decoration ? `${priority}-${decoration}` : "";
+
+  if (textDecoration) {
+    return createElement(
+      "div",
+      { className: ` ${textDecoration}` },
+      createElement(
+        type,
+        {
+          className: `Text-${type}-${priority} ${className}`,
+        },
+        text
+      )
+    );
+  }
+
   return createElement(
     type,
     { className: `Text-${type}-${priority} ${className}` },

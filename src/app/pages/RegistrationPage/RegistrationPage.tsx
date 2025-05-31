@@ -1,4 +1,5 @@
-import Text from "@components/atoms/Text/Text";
+import Text from "@components/atoms/Text";
+import RegistrationForm from "@components/organism/RegistrationForm";
 
 import "./registration-page.css";
 
@@ -21,6 +22,7 @@ const RegistrationPage = () => {
         </div>
         <Text type="h2" text="Step 1 of 3" priority="heading" />
       </div>
+      <RegistrationForm />
     </div>
   );
 };

@@ -8,6 +8,7 @@
 .Registration-page-top-content {
   display: flex;
   justify-content: space-between;
+  margin-bottom: var(--space-7);
 }
 
 .Registration-page-title {

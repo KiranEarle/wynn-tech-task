@@ -11,6 +11,7 @@ const customJestConfig = {
     "^@resources/(.*)$": "<rootDir>/src/app/resources/$1",
     "^@pages/(.*)$": "<rootDir>/src/app/page/$1",
     "^@public/(.*)$": "<rootDir>/public/$1",
+    "^@app-type/(.*)$": "<rootDir>/src/app/types/$1",
   },
 
   testEnvironment: "jsdom",

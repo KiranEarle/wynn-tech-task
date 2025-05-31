@@ -1,73 +1,73 @@
 .Text-h1-heading {
   font-size: var(--font-size-4xl);
   font-family: var(--font-big-caslon);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h1-normal {
   font-size: var(--font-size-4xl);
   font-family: var(--font-avenir-lt);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h2-heading {
   font-size: var(--font-size-2xl);
   font-family: var(--font-big-caslon);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h2-normal {
   font-size: var(--font-size-2xl);
   font-family: var(--font-avenir-lt);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h3-heading {
   font-size: var(--font-size-lg);
   font-family: var(--font-big-caslon);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h3-normal {
   font-size: var(--font-size-lg);
   font-family: var(--font-avenir-lt);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h4-heading {
   font-size: var(--font-size-md);
   font-family: var(--font-big-caslon);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h4-normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h5-heading {
   font-size: var(--font-size-md);
   font-family: var(--font-big-caslon);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h5-normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-h6-heading {
   font-size: var(--font-size-md);
   font-family: var(--font-big-caslon);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-6-normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-p-heading {
@@ -78,17 +78,71 @@
 .Text-p-normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-span-heading {
   font-size: var(--font-size-md);
   font-family: var(--font-big-caslon);
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .Text-span-normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
-  font-weight: 400;
+  font-weight: inherit;
+}
+
+.heading-underline {
+  margin-bottom: var(--space-1);
+}
+
+.heading-underline > h1,
+.heading-underline > h2,
+.heading-underline > h3,
+.heading-underline > h4,
+.heading-underline > h5,
+.heading-underline > h6,
+.heading-underline > p,
+.heading-underline > span {
+  padding-bottom: var(--space-1);
+  position: relative;
+  display: inline;
+}
+
+.heading-underline > h1::after,
+.heading-underline > h2::after,
+.heading-underline > h3::after,
+.heading-underline > h4::after,
+.heading-underline > h5::after,
+.heading-underline > h6::after,
+.heading-underline > p::after,
+.heading-underline > span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: calc(100% + 40px);
+  background-color: var(--color-black);
+}
+
+.heading-bold {
+  font-weight: 700;
+}
+
+.normal-underline h1,
+.normal-underline h2,
+.normal-underline h3,
+.normal-underline h4,
+.normal-underline h5,
+.normal-underline h6,
+.normal-underline p,
+.normal-underline span {
+  border-bottom: 1px solid var(--color-black);
+  display: inline;
+}
+
+.normal-bold {
+  font-weight: 700;
 }
