@@ -48,16 +48,15 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
   return (
     <div ref={wrapperRef}>
       <label
-        htmlFor={id}
         className="Phone-number-field"
-        onClick={() => setIsOpen((prev) => !prev)}
+        // onClick={() => setIsOpen((prev) => !prev)}
       >
         <label htmlFor={id} className="Phone-number-field-label">
           {label} {required ? "*" : ""}
         </label>
         <div className="Phone-number-field-section">
           <div
-            onClick={() => setIsOpen(true)}
+            onClick={() => setIsOpen((prev) => !prev)}
             className="Phone-number-field-selected-flag"
           >
             <img
@@ -85,6 +84,7 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
             type="tel"
             className="Phone-number-field-input"
             value={value}
+            onClick={() => setIsOpen(false)}
             onChange={handleOnChange}
           />
         </div>
@@ -94,18 +94,27 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
         >
           {phoneNumberLocals?.map((country) => {
             return (
-              <input
-                className={`Phone-number-field-item ${
-                  country.code === selectCountry.code ? "selected-option" : ""
-                }`}
-                id={selectCountry.code}
+              <div
                 onClick={() => {
                   setSelectCountry(country);
                 }}
+                className={`Phone-number-field-container ${
+                  country.code === selectCountry.code ? "selected-option" : ""
+                }`}
                 key={country.label}
-                type="button"
-                value={country.label}
-              />
+              >
+                <img
+                  src={country.flagImgSrc}
+                  alt="flag"
+                  className="Phone-number-flag"
+                />
+                <input
+                  className="Phone-number-field-item"
+                  id={selectCountry.code}
+                  type="button"
+                  value={country.label}
+                />
+              </div>
             );
           })}
         </div>

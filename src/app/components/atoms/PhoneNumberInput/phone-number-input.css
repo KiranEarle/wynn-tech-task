@@ -56,8 +56,9 @@
 }
 
 .Phone-number-flag {
-  width: 30px;
-  height: 15px;
+  width: 32px;
+  height: 20px;
+  border-radius: 3px;
 }
 
 .Phone-number-field-chevron {
@@ -66,17 +67,25 @@
   transform: rotate(90deg);
 }
 
-.Phone-number-field-item {
+.Phone-number-field-container {
+  display: flex;
+  align-items: center;
   padding: var(--font-size-sm) var(--font-size-sm);
-  background-color: var(--color-white);
+}
+
+.Phone-number-field-item {
+  background-color: transparent;
+  padding: 0 var(--font-size-sm);
   color: var(--font-black);
   font-size: var(--font-size-md);
+  height: var(--font-size-md);
   font-family: var(--font-avenir-lt);
   display: block;
   width: 100%;
   text-align: left;
   border: none;
   cursor: pointer;
+  align-items: center;
 }
 
 .Phone-number-field-list {
