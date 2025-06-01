@@ -5,24 +5,25 @@
 
 @media screen and (min-width: 1180px) {
   .Newsletter {
-    height: 112px;
+    min-height: 112px;
     width: 100%;
   }
 }
 
 .Newsletter_container {
-  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-content: center;
+  color: var(--color-black);
+  max-width: 1440px;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  padding: var(--space-6) var(--space-6);
 }
 
 @media screen and (min-width: 1180px) {
   .Newsletter_container {
-    color: var(--color-black);
-    max-width: 1440px;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    padding: 0 var(--space-6);
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
   }
@@ -31,26 +32,58 @@
 .Newsletter_content {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .Newsletter_title {
   color: var(--color-black);
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 1180px) {
+  .Newsletter_title {
+    justify-content: left;
+  }
 }
 
 .Newsletter_text {
   color: var(--color-dark-grey);
+  display: flex;
+  justify-content: center;
   width: 100%;
-  max-width: 340px;
+  max-width: 100%;
+  margin-top: var(--space-6);
+}
+
+@media screen and (min-width: 1180px) {
+  .Newsletter_text {
+    margin-top: 0;
+    max-width: 340px;
+  }
 }
 
 .Newsletter_email {
-  min-width: 530px;
-  height: 72px;
+  min-width: 0px;
+  max-width: 530px;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 1px solid var(--color-border-grey);
   padding: 12px;
   border-radius: 4px;
+  margin-top: var(--space-6);
+}
+
+@media screen and (min-width: 1180px) {
+  .Newsletter_email {
+    height: 72px;
+    min-width: 530px;
+    flex-direction: row;
+  }
 }
 
 .Newsletter_email input {
@@ -62,8 +95,21 @@
   font-size: var(--font-size-md);
 }
 
+@media screen and (min-width: 1180px) {
+  .Newsletter_email {
+    margin-top: 0;
+    max-width: 222px;
+  }
+}
+
 .Newsletter_email button {
   border: 2px solid var(--color-teal);
   height: 48px;
-  max-width: 222px;
+  margin-top: var(--space-2);
+}
+
+@media screen and (min-width: 1180px) {
+  .Newsletter_email button {
+    margin-top: 0;
+  }
 }
