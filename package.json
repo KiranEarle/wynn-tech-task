@@ -1,5 +1,6 @@
 {
   "name": "wynn-tech-task",
+  "author": "Kiran Earle",
   "version": "0.1.0",
   "private": true,
   "scripts": {
