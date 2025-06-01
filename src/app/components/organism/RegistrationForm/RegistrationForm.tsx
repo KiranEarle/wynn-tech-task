@@ -23,9 +23,9 @@ type RegistrationFormProps = {
   onSubmit: () => Promise<void>;
 };
 
-const RegistrationForm = ({}: RegistrationFormProps) => {
+const RegistrationForm = (props: RegistrationFormProps) => {
+  const { onSubmit } = props;
   const [isChecked, setIsChecked] = useState(false);
-  console.log({ isChecked });
   return (
     <form className="Registration-form">
       <div className="Registration-form-personal-info">
@@ -102,7 +102,7 @@ const RegistrationForm = ({}: RegistrationFormProps) => {
           checked={isChecked}
           onClick={(value) => setIsChecked(!value)}
         />
-        <Button label="Next" onClick={(e) => console.log({ e })} />
+        <Button label="Next" onClick={() => onSubmit()} />
       </div>
     </form>
   );

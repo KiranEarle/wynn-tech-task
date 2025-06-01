@@ -26,6 +26,8 @@
       "@resources/*": ["./src/app/resources/*"],
       "@pages/*": ["./src/app/pages/*"],
       "@app-types/*": ["./src/app/types/*"],
+      "@constance/*": ["./src/app/constance/*"],
+      "@hooks/*": ["./src/app/hooks/*"],
       "@public/*": ["./public/*"]
     }
   },

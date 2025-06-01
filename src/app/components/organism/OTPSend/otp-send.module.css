@@ -1,0 +1,40 @@
+.OTPSend_form {
+}
+
+.OTPSend_form_header {
+  margin-bottom: var(--space-8);
+}
+
+.OTPSend_form_code_header {
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-xl);
+}
+
+.OTPSend_form_code_p {
+  margin-bottom: var(--space-4);
+  color: var(--font-grey);
+}
+
+.OTPSend_section {
+  min-height: 206px;
+  background-color: var(--color-white);
+  margin-bottom: var(--space-8);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.OTPSend_cta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-10);
+}
+
+.OTPSend_radio {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-7);
+  width: 100%;
+  max-width: 360px;
+}

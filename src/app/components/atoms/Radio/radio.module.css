@@ -1,0 +1,33 @@
+.Radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  gap: 8px;
+}
+
+.Radio input {
+  display: none;
+}
+
+.Radio_mark {
+  height: 16px;
+  width: 16px;
+  border: 1px solid #383c3e;
+  border-radius: 50%;
+  position: relative;
+  margin-right: var(--space-1);
+}
+
+.Radio input:checked + .Radio_mark {
+  background-color: var(--color-teal);
+  border: none;
+}
+
+.Radio input:checked + .Radio_mark::after {
+  display: block;
+}
+
+.Radio_label {
+  margin-top: 6px;
+}

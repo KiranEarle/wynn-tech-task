@@ -25,6 +25,11 @@ namespace WynnRegistrationsApp {
     label: string;
     countryCode: string;
   };
+
+  export type PageStates = {
+    state: "personalDetails" | "otpSendCode" | "otpVerify";
+    stepNumber: string;
+  };
 }
 
 export default WynnRegistrationsApp;

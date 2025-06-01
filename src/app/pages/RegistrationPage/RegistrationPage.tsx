@@ -1,18 +1,23 @@
 "use client";
+
 import Text from "@components/atoms/Text";
 import RegistrationForm from "@components/organism/RegistrationForm";
+import OTPSend from "@components/organism/OTPSend/OTPSend";
+
+import useRegistrationPage from "@hooks/useRegistrationPage";
 
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 
 import "./registration-page.css";
 
 const RegistrationPage = () => {
-  const onSubmit = async () => {
-    console.log("onSubmit");
-  };
+  const { pageState, setPageState, onSubmitPersonDetailsForm, onSendOTP } =
+    useRegistrationPage();
+
   const inputOnChange = () => {
     console.log("inputChange");
   };
+
   return (
     <div className="Registration-page">
       <div className="Registration-page-top-content">
@@ -29,13 +34,27 @@ const RegistrationPage = () => {
             priority="normal"
           />
         </div>
-        <Text type="h2" text="Step 1 of 3" priority="heading" />
+        <Text
+          type="h2"
+          text={`Step ${pageState.stepNumber} of 3`}
+          priority="heading"
+        />
       </div>
-      <RegistrationForm
-        formData={{} as WynnRegistrationsApp.PersonalDetailsFormData}
-        inputOnChange={inputOnChange}
-        onSubmit={onSubmit}
-      />
+      {pageState.state === "personalDetails" && (
+        <RegistrationForm
+          formData={{} as WynnRegistrationsApp.PersonalDetailsFormData}
+          inputOnChange={inputOnChange}
+          onSubmit={onSubmitPersonDetailsForm}
+        />
+      )}
+      {pageState.state === "otpSendCode" && (
+        <OTPSend
+          setPageState={(page) => setPageState(page)}
+          onSendOTP={onSendOTP}
+        />
+      )}
+
+      {pageState.state === "otpVerify" && <div>OTP Verify</div>}
     </div>
   );
 };

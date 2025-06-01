@@ -93,6 +93,7 @@
   font-family: var(--font-avenir-lt);
   border: none;
   font-size: var(--font-size-md);
+  cursor: pointer;
 }
 
 @media screen and (min-width: 1180px) {
