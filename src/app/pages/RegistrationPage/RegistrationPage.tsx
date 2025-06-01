@@ -1,3 +1,4 @@
+"use client";
 import Text from "@components/atoms/Text";
 import RegistrationForm from "@components/organism/RegistrationForm";
 
@@ -6,6 +7,12 @@ import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 import "./registration-page.css";
 
 const RegistrationPage = () => {
+  const onSubmit = async () => {
+    console.log("onSubmit");
+  };
+  const inputOnChange = () => {
+    console.log("inputChange");
+  };
   return (
     <div className="Registration-page">
       <div className="Registration-page-top-content">
@@ -26,8 +33,8 @@ const RegistrationPage = () => {
       </div>
       <RegistrationForm
         formData={{} as WynnRegistrationsApp.PersonalDetailsFormData}
-        inputOnChange={() => {}}
-        onSubmit={async () => {}}
+        inputOnChange={inputOnChange}
+        onSubmit={onSubmit}
       />
     </div>
   );
