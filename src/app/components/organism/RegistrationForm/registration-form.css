@@ -22,3 +22,17 @@
     display: flex;
   }
 }
+
+.Registration-cta {
+  margin-top: var(--space-10);
+}
+
+.Registration-cta a {
+  text-decoration: underline;
+  color: var(--color-text-brown);
+}
+
+.Registration-cta button {
+  margin-top: var(--space-12);
+  width: 217px;
+}

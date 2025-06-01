@@ -30,7 +30,11 @@ const Checkbox = (props: CheckboxProps) => {
         />
         <TickSvg />
       </label>
-      {label && <label htmlFor={id}>{label()}</label>}
+      {label && (
+        <label onClick={() => handleOnChange(checked as boolean)} htmlFor={id}>
+          {label()}
+        </label>
+      )}
     </label>
   );
 };

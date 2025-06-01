@@ -1,0 +1,19 @@
+.Button {
+  width: 100%;
+  height: 56px;
+  border: 0.5px solid var(--color-teal);
+  border-radius: 4px;
+  font-family: var(--font-avenir-lt);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+}
+
+.primary {
+  background-color: var(--color-teal);
+  color: var(--color-white);
+}
+
+.secondary {
+  background-color: var(--color-white);
+  color: var(--color-teal);
+}

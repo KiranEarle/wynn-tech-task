@@ -8,6 +8,7 @@ import InputField from "@components/atoms/InputField";
 import SelectField from "@components/atoms/SelectField";
 import PhoneNumberInput from "@components/atoms/PhoneNumberInput";
 import Checkbox from "@components/atoms/Checkbox";
+import Button from "@components/atoms/Button";
 
 import countries from "@resources/countries";
 import genders from "@resources/genders";
@@ -88,7 +89,7 @@ const RegistrationForm = ({}: RegistrationFormProps) => {
           onChange={(data) => console.log({ data })}
         />
       </div>
-      <div>
+      <div className="Registration-cta">
         <Checkbox
           label={() => {
             return (
@@ -101,6 +102,7 @@ const RegistrationForm = ({}: RegistrationFormProps) => {
           checked={isChecked}
           onClick={(value) => setIsChecked(!value)}
         />
+        <Button label="Next" onClick={(e) => console.log({ e })} />
       </div>
     </form>
   );

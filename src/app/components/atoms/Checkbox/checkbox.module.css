@@ -2,9 +2,13 @@
   display: flex;
 }
 
+.Checkbox_container label {
+  cursor: pointer;
+}
+
 .Checkbox {
   height: 16px;
-  width: 16px;
+  min-width: 16px;
   display: block;
   border-radius: 4px;
   margin: 0 var(--space-2);
