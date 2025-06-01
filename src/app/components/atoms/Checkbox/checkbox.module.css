@@ -1,0 +1,35 @@
+.Checkbox_container {
+  display: flex;
+}
+
+.Checkbox {
+  height: 16px;
+  width: 16px;
+  display: block;
+  border-radius: 4px;
+  margin: 0 var(--space-2);
+  border: 0.5px solid var(--color-black);
+  cursor: pointer;
+}
+
+.Checkbox svg {
+  display: none;
+}
+
+.Checkbox.checked {
+  background-color: var(--color-teal);
+  border: none;
+}
+
+.Checkbox.checked svg {
+  display: block;
+  height: 12px;
+  margin: 2px auto;
+  fill: var(--color-white);
+}
+
+.Checkbox_internal {
+  width: 0px;
+  height: 0px;
+  display: none;
+}

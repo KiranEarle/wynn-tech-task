@@ -1,14 +1,18 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
+
+import { useState } from "react";
 
 import Text from "@components/atoms/Text";
 import InputField from "@components/atoms/InputField";
 import SelectField from "@components/atoms/SelectField";
 import PhoneNumberInput from "@components/atoms/PhoneNumberInput";
-
-import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
+import Checkbox from "@components/atoms/Checkbox";
 
 import countries from "@resources/countries";
 import genders from "@resources/genders";
+
+import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 
 import "./registration-form.css";
 
@@ -19,6 +23,8 @@ type RegistrationFormProps = {
 };
 
 const RegistrationForm = ({}: RegistrationFormProps) => {
+  const [isChecked, setIsChecked] = useState(false);
+  console.log({ isChecked });
   return (
     <form className="Registration-form">
       <div className="Registration-form-personal-info">
@@ -82,7 +88,20 @@ const RegistrationForm = ({}: RegistrationFormProps) => {
           onChange={(data) => console.log({ data })}
         />
       </div>
-      <div></div>
+      <div>
+        <Checkbox
+          label={() => {
+            return (
+              <span>
+                I agree to the <a href="/">terms and conditions </a>
+                and <a href="/">privacy policy.</a>
+              </span>
+            );
+          }}
+          checked={isChecked}
+          onClick={(value) => setIsChecked(!value)}
+        />
+      </div>
     </form>
   );
 };
