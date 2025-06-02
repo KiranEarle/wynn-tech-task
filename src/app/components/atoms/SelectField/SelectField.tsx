@@ -48,6 +48,16 @@ const SelectField = (props: SelectFieldProps) => {
     }
   };
 
+  const handleOnBlur = (e) => {
+    if (ignoreBlur.current) {
+      ignoreBlur.current = false;
+      return;
+    }
+    if (onBlur) {
+      onBlur(e as React.FocusEvent<HTMLInputElement, Element>);
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -80,14 +90,7 @@ const SelectField = (props: SelectFieldProps) => {
               setIsOpen((prev) => !prev);
             }
           }}
-          onBlur={(e) => {
-            if (ignoreBlur.current) {
-              ignoreBlur.current = false;
-              return;
-            }
-            onBlur(e);
-          }}
-          onChange={(e) => console.log({ e })}
+          onBlur={handleOnBlur}
           value={value}
           readOnly
           id={id}

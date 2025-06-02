@@ -13,28 +13,21 @@ import Button from "@components/atoms/Button";
 import countries from "@resources/countries";
 import genders from "@resources/genders";
 
+import { textRegex, emailRegex, phoneNumberRegex } from "@constance/regex";
+
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 
 import "./registration-form.css";
 
 type RegistrationFormProps = {
   inputOnChange: (field: string, value: string) => void;
-  validateEmailInput: (field: string, value: string) => void;
-  validateTextInput: (field: string, value: string) => void;
-  validateSelectInput: (field: string, value: string) => void;
-  validatePhoneNumberInput: (field: string, value: string) => void;
+  inputValidation: (field: string, value: string, regex: RegExp) => void;
   formData: WynnRegistrationsApp.PersonalDetailsFormData;
   onSubmit: () => Promise<void>;
 };
 
 const RegistrationForm = (props: RegistrationFormProps) => {
-  const {
-    onSubmit,
-    formData,
-    inputOnChange,
-    validateEmailInput,
-    validateTextInput,
-  } = props;
+  const { onSubmit, formData, inputOnChange, inputValidation } = props;
   const [isChecked, setIsChecked] = useState(false);
   return (
     <form className="Registration-form">
@@ -55,7 +48,9 @@ const RegistrationForm = (props: RegistrationFormProps) => {
             placeholder="Enter first name..."
             required
             id="firstName"
-            onBlur={(e) => validateTextInput("firstName", e.target.value)}
+            onBlur={(e) =>
+              inputValidation("firstName", e.target.value, textRegex)
+            }
           />
           <InputField
             label={formData.lastName.label}
@@ -65,7 +60,9 @@ const RegistrationForm = (props: RegistrationFormProps) => {
             placeholder="Enter last name..."
             required
             id="lastName"
-            onBlur={(e) => validateTextInput("lastName", e.target.value)}
+            onBlur={(e) =>
+              inputValidation("lastName", e.target.value, textRegex)
+            }
           />
         </div>
         <SelectField
@@ -77,7 +74,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           value={formData.gender.value}
           options={genders}
           onChange={(e) => inputOnChange("gender", e.target.value)}
-          onBlur={(e) => validateTextInput("gender", e.target.value)}
+          onBlur={(e) => inputValidation("gender", e.target.value, textRegex)}
         />
         <SelectField
           label="Your Residence Country"
@@ -88,7 +85,9 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           value={formData.residency.value}
           options={countries}
           onChange={(e) => inputOnChange("residency", e.target.value)}
-          onBlur={(e) => validateTextInput("residency", e.target.value)}
+          onBlur={(e) =>
+            inputValidation("residency", e.target.value, textRegex)
+          }
         />
       </div>
       <div>
@@ -104,17 +103,27 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           value={formData.email.value}
           isValid={formData.email.isValid}
           onChange={(e) => inputOnChange("email", e.target.value)}
-          onBlur={(e) => validateEmailInput("email", e.target.value)}
+          onBlur={(e) => inputValidation("email", e.target.value, emailRegex)}
           type="email"
           placeholder="Enter email address..."
           required
           id="email"
         />
         <PhoneNumberInput
-          label="Phone Number"
+          label={formData.phoneNumber.label}
           required
           id="phoneNumber"
-          onChange={(data) => console.log({ data })}
+          value={formData.phoneNumber.value}
+          onChange={(numberDetails) => {
+            const { countryCode, number } = numberDetails;
+            const phoneNumber = number ? `${countryCode}${number}` : "";
+            inputOnChange("phoneNumber", phoneNumber);
+          }}
+          onBlur={(numberDetails) => {
+            const { countryCode, number } = numberDetails;
+            const phoneNumber = number ? `${countryCode}${number}` : "";
+            inputValidation("phoneNumber", phoneNumber, phoneNumberRegex);
+          }}
         />
       </div>
       <div className="Registration-cta">

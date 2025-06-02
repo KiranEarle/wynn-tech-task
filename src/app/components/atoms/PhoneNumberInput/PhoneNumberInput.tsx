@@ -17,10 +17,14 @@ export type PhoneNumberInputProps = {
   onChange?: (
     number: { number: string } & WynnRegistrationsApp.PhoneNumberFieldData
   ) => void;
+  onBlur?: (
+    number: { number: string } & WynnRegistrationsApp.PhoneNumberFieldData
+  ) => void;
+  isValid?: string;
 } & React.SelectHTMLAttributes<HTMLInputElement>;
 
 const PhoneNumberInput = (props: PhoneNumberInputProps) => {
-  const { id, label, required, onChange } = props;
+  const { id, label, required, onChange, onBlur } = props;
 
   const [selectCountry, setSelectCountry] = useState(phoneNumberLocals[0]);
   const [searchLocal, setSearchLocal] = useState("");
@@ -35,6 +39,13 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
     setValue(number);
     if (onChange) {
       onChange({ number, ...selectCountry });
+    }
+  };
+
+  const handleOnBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const number = e.target.value;
+    if (onBlur) {
+      onBlur({ number, ...selectCountry });
     }
   };
 
@@ -97,6 +108,7 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
             className="Phone-number-field-input"
             value={value}
             onClick={() => setIsOpen(false)}
+            onBlur={handleOnBlur}
             onChange={handleOnChange}
             placeholder="(____)-______"
           />

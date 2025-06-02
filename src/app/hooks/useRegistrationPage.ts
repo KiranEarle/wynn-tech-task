@@ -17,36 +17,16 @@ const useRegistrationPage = () => {
   const [personalDataForm, setPersonalDataFrom] = useState(initialPersonalData);
 
   const updateForm = (field: string, value: string) => {
+    console.log({ value });
     const updateDataSet = personalDataForm[field];
     updateDataSet.value = value;
 
     setPersonalDataFrom({ ...personalDataForm, ...updateDataSet });
   };
 
-  const validateTextInput = (field: string, value: string) => {
-    console.log({ field, value });
-    const textRegex = /^[A-Za-z\s]+$/;
+  const inputValidation = (field: string, value: string, regex: RegExp) => {
     const updateDataSet = personalDataForm[field];
-    if (!textRegex.test(value)) {
-      updateDataSet.isValid = "not_valid";
-      setPersonalDataFrom({ ...personalDataForm, ...updateDataSet });
-
-      console.log("not valid");
-      return;
-    }
-    updateDataSet.isValid = "";
-    setPersonalDataFrom({ ...personalDataForm, ...updateDataSet });
-  };
-
-  const validateSelectInput = (field: string, value: string) => {};
-
-  const validatePhoneNumberInput = (field: string, value: string) => {};
-
-  const validateEmailInput = (field: string, value: string) => {
-    const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const updateDataSet = personalDataForm[field];
-
-    if (!emailRegex.test(value)) {
+    if (!regex.test(value)) {
       updateDataSet.isValid = "not_valid";
       setPersonalDataFrom({ ...personalDataForm, ...updateDataSet });
 
@@ -60,15 +40,15 @@ const useRegistrationPage = () => {
   const onSubmitPersonDetailsForm = async () => {
     try {
       console.log({ personalDataForm });
-      // await submitPersonalDetails({
-      //   firstName: "",
-      //   lastName: "",
-      //   gender: "",
-      //   email: "",
-      //   phoneNumber: "",
-      //   residency: "",
-      // });
-      // setPageState(otpSendCode);
+      await submitPersonalDetails({
+        firstName: "",
+        lastName: "",
+        gender: "",
+        email: "",
+        phoneNumber: "",
+        residency: "",
+      });
+      setPageState(otpSendCode);
       setViewToTop();
     } catch (e) {
       console.error(e);
@@ -92,10 +72,7 @@ const useRegistrationPage = () => {
     onVerifyCode,
     personalDataForm,
     updateForm,
-    validateEmailInput,
-    validateTextInput,
-    validateSelectInput,
-    validatePhoneNumberInput,
+    inputValidation,
   };
 };
 

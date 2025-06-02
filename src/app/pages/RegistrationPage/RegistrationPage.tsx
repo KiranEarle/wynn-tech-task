@@ -20,8 +20,7 @@ const RegistrationPage = () => {
     onVerifyCode,
     personalDataForm,
     updateForm,
-    validateEmailInput,
-    validateTextInput,
+    inputValidation,
   } = useRegistrationPage();
 
   return (
@@ -53,8 +52,7 @@ const RegistrationPage = () => {
           }
           inputOnChange={updateForm}
           onSubmit={onSubmitPersonDetailsForm}
-          validateEmailInput={validateEmailInput}
-          validateTextInput={validateTextInput}
+          inputValidation={inputValidation}
         />
       )}
       {pageState.state === "otpSendCode" && (
