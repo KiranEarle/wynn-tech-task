@@ -114,6 +114,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           required
           id="phoneNumber"
           value={formData.phoneNumber.value}
+          isValid={formData.phoneNumber.isValid}
           onChange={(numberDetails) => {
             const { countryCode, number } = numberDetails;
             const phoneNumber = number ? `${countryCode}${number}` : "";

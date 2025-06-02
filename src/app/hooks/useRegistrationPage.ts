@@ -7,6 +7,7 @@ import setViewToTop from "@helpers/setViewToTop";
 import initialPersonalData from "@constance/initialPersonalData";
 
 import { personalDetails, otpSendCode, otpVerify } from "@constance/pageStates";
+import { textRegex, emailRegex, phoneNumberRegex } from "@constance/regex";
 
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 
@@ -17,7 +18,6 @@ const useRegistrationPage = () => {
   const [personalDataForm, setPersonalDataFrom] = useState(initialPersonalData);
 
   const updateForm = (field: string, value: string) => {
-    console.log({ value });
     const updateDataSet = personalDataForm[field];
     updateDataSet.value = value;
 
@@ -38,6 +38,29 @@ const useRegistrationPage = () => {
   };
 
   const onSubmitPersonDetailsForm = async () => {
+    Object.keys(personalDataForm).forEach((key) => {
+      let regex: RegExp;
+
+      switch (key) {
+        case "firstName":
+        case "lastName":
+        case "gender":
+        case "residency":
+          regex = textRegex;
+          break;
+
+        case "email":
+          regex = emailRegex;
+          break;
+
+        case "phoneNumber":
+          regex = phoneNumberRegex;
+      }
+
+      const formFieldData = personalDataForm[key];
+      inputValidation(key, formFieldData.value, regex);
+    });
+
     try {
       console.log({ personalDataForm });
       await submitPersonalDetails({

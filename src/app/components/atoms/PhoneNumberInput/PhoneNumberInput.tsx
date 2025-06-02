@@ -10,7 +10,7 @@ import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 import TickSvg from "@public/tick.svg";
 import SearchSvg from "@public/search.svg";
 
-import "./phone-number-input.css";
+import style from "./phone-number-input.module.css";
 
 export type PhoneNumberInputProps = {
   label?: string;
@@ -24,7 +24,7 @@ export type PhoneNumberInputProps = {
 } & React.SelectHTMLAttributes<HTMLInputElement>;
 
 const PhoneNumberInput = (props: PhoneNumberInputProps) => {
-  const { id, label, required, onChange, onBlur } = props;
+  const { id, label, required, onChange, onBlur, isValid = "" } = props;
 
   const [selectCountry, setSelectCountry] = useState(phoneNumberLocals[0]);
   const [searchLocal, setSearchLocal] = useState("");
@@ -68,33 +68,35 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
 
   return (
     <div ref={wrapperRef}>
-      <label className="Phone-number-field">
-        <label htmlFor={id} className="Phone-number-field-label">
+      <label className={style.Phone_number_field}>
+        <label htmlFor={id} className={style.Phone_number_field_label}>
           {label} {required ? "*" : ""}
         </label>
-        <div className="Phone-number-field-section">
+        <div
+          className={`${style.Phone_number_field_section} ${style[isValid]}`}
+        >
           <button
             onClick={(e) => {
               e.preventDefault();
               setIsOpen((prev) => !prev);
             }}
-            className="Phone-number-field-selected-flag"
+            className={style.Phone_number_field_selected_flag}
           >
             <img
               src={selectCountry.flagImgSrc}
               alt="flag"
-              className="Phone-number-flag"
+              className={style.Phone_number_flag}
             />
             <img
               src="/chevron_icon.svg"
               alt="chevron"
-              className="Phone-number-field-chevron"
+              className={style.Phone_number_field_chevron}
             />
           </button>
           <input
             id={`${id}-region-code`}
             type="tel"
-            className="Phone-number-field-region-code"
+            className={style.Phone_number_field_region_code}
             readOnly
             placeholder={selectCountry.countryCode}
             value={value ? selectCountry.countryCode : ""}
@@ -105,7 +107,8 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
             type="tel"
             inputMode="numeric"
             pattern="[0-9]*"
-            className="Phone-number-field-input"
+            maxLength={10}
+            className={style.Phone_number_field_input}
             value={value}
             onClick={() => setIsOpen(false)}
             onBlur={handleOnBlur}
@@ -113,16 +116,16 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
             placeholder="(____)-______"
           />
         </div>
-        <div className={`${isOpen ? "Phone-country-search" : "hide"}`}>
-          <div className="Phone-number-field-list-search-container">
-            <SearchSvg className="Phone-number-field-list-search-icon" />
+        <div className={`${isOpen ? style.Phone_country_search : "hide"}`}>
+          <div className={style.Phone_number_field_list_search_container}>
+            <SearchSvg className={style.Phone_number_field_list_search_icon} />
             <input
-              className="Phone-number-field-list-search"
+              className={style.Phone_number_field_list_search}
               placeholder="Search"
               onChange={(e) => setSearchLocal(e.target.value)}
             />
           </div>
-          <div className="Phone-number-field-list">
+          <div className={style.Phone_number_field_list}>
             {filterLocalsList?.map((country) => {
               const selected = country.code === selectCountry.code;
               return (
@@ -131,18 +134,18 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
                     setSelectCountry(country);
                     setIsOpen(false);
                   }}
-                  className={`Phone-number-field-container ${
-                    selected ? "selected-option" : ""
+                  className={`${style.Phone_number_field_container} ${
+                    selected ? style.selected_option : ""
                   }`}
                   key={country.label}
                 >
                   <img
                     src={country.flagImgSrc}
                     alt="flag"
-                    className="Phone-number-flag"
+                    className={style.Phone_number_flag}
                   />
                   <input
-                    className="Phone-number-field-item"
+                    className={style.Phone_number_field_item}
                     id={selectCountry.code}
                     type="button"
                     value={country.label}
@@ -151,7 +154,9 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
                       setIsOpen(false);
                     }}
                   />
-                  {selected && <TickSvg className="Phone-number-field-tick" />}
+                  {selected && (
+                    <TickSvg className={style.Phone_number_field_tick} />
+                  )}
                 </div>
               );
             })}
