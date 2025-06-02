@@ -21,25 +21,44 @@ const useRegistrationPage = () => {
     const updateDataSet = personalDataForm[field];
     updateDataSet.value = value;
 
-    setPersonalDataFrom({ ...personalDataForm, ...updateDataSet });
+    setPersonalDataFrom({ ...personalDataForm, [field]: updateDataSet });
+  };
+
+  const updateFormPhoneNumber = (code: string, number: string) => {
+    const phoneNumber = `${code}${number}`;
+    const updateDataSet = personalDataForm;
+
+    updateDataSet.phoneNumber = {
+      ...updateDataSet.phoneNumber,
+      value: number,
+      code,
+      fullNumber: phoneNumber,
+    };
+
+    setPersonalDataFrom({
+      ...personalDataForm,
+      phoneNumber: updateDataSet.phoneNumber,
+    });
   };
 
   const inputValidation = (field: string, value: string, regex: RegExp) => {
     const updateDataSet = personalDataForm[field];
+
     if (!regex.test(value)) {
       updateDataSet.isValid = "not_valid";
-      setPersonalDataFrom({ ...personalDataForm, ...updateDataSet });
-
-      console.log("not valid");
+      setPersonalDataFrom({ ...personalDataForm, [field]: updateDataSet });
       return;
     }
+
     updateDataSet.isValid = "";
-    setPersonalDataFrom({ ...personalDataForm, ...updateDataSet });
+    setPersonalDataFrom({ ...personalDataForm, [field]: updateDataSet });
   };
 
   const onSubmitPersonDetailsForm = async () => {
-    Object.keys(personalDataForm).forEach((key) => {
-      let regex: RegExp;
+    const formKeys = Object.keys(personalDataForm);
+    formKeys.forEach((key) => {
+      let regex: RegExp = textRegex;
+      console.log({ key });
 
       switch (key) {
         case "firstName":
@@ -58,18 +77,30 @@ const useRegistrationPage = () => {
       }
 
       const formFieldData = personalDataForm[key];
-      inputValidation(key, formFieldData.value, regex);
+      let value = formFieldData.value;
+
+      if (key === "phoneNumber") {
+        value = formFieldData.fullNumber;
+      }
+      inputValidation(key, value, regex);
     });
 
+    if (
+      formKeys
+        .map((data) => personalDataForm[data])
+        .some((data) => data.isValid === "not_valid")
+    ) {
+      return;
+    }
+
     try {
-      console.log({ personalDataForm });
       await submitPersonalDetails({
-        firstName: "",
-        lastName: "",
-        gender: "",
-        email: "",
-        phoneNumber: "",
-        residency: "",
+        firstName: personalDataForm.firstName.value,
+        lastName: personalDataForm.lastName.value,
+        gender: personalDataForm.gender.value,
+        email: personalDataForm.email.value,
+        phoneNumber: personalDataForm.phoneNumber.fullNumber,
+        residency: personalDataForm.residency.value,
       });
       setPageState(otpSendCode);
       setViewToTop();
@@ -95,6 +126,7 @@ const useRegistrationPage = () => {
     onVerifyCode,
     personalDataForm,
     updateForm,
+    updateFormPhoneNumber,
     inputValidation,
   };
 };

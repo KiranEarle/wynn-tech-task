@@ -24,19 +24,17 @@ export type PhoneNumberInputProps = {
 } & React.SelectHTMLAttributes<HTMLInputElement>;
 
 const PhoneNumberInput = (props: PhoneNumberInputProps) => {
-  const { id, label, required, onChange, onBlur, isValid = "" } = props;
+  const { id, label, required, onChange, onBlur, isValid = "", value } = props;
 
   const [selectCountry, setSelectCountry] = useState(phoneNumberLocals[0]);
   const [searchLocal, setSearchLocal] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = useState("");
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const number = e.target.value;
     const numRegex = /[^0-9]/g;
     if (numRegex.test(number)) return;
-    setValue(number);
     if (onChange) {
       onChange({ number, ...selectCountry });
     }

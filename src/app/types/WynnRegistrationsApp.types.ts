@@ -18,7 +18,7 @@ namespace WynnRegistrationsApp {
     gender: FormSelectField;
     residency: FormSelectField;
     email: FormInputField;
-    phoneNumber: FormSelectField;
+    phoneNumber: FormSelectField & { code: string; fullNumber: string };
   };
 
   export type PersonalDetails = {

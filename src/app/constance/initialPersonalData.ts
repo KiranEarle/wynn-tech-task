@@ -34,6 +34,8 @@ const initialPersonalData = {
     isRequired: true,
     isValid: "",
     label: "Phone Number",
+    code: "",
+    fullNumber: "",
   },
 };
 

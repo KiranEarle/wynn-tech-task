@@ -21,13 +21,20 @@ import "./registration-form.css";
 
 type RegistrationFormProps = {
   inputOnChange: (field: string, value: string) => void;
+  inputOnChangePhoneNumber: (code: string, number: string) => void;
   inputValidation: (field: string, value: string, regex: RegExp) => void;
   formData: WynnRegistrationsApp.PersonalDetailsFormData;
   onSubmit: () => Promise<void>;
 };
 
 const RegistrationForm = (props: RegistrationFormProps) => {
-  const { onSubmit, formData, inputOnChange, inputValidation } = props;
+  const {
+    onSubmit,
+    formData,
+    inputOnChange,
+    inputValidation,
+    inputOnChangePhoneNumber,
+  } = props;
   const [isChecked, setIsChecked] = useState(false);
   return (
     <form className="Registration-form">
@@ -45,6 +52,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
             value={formData.firstName.value}
             isValid={formData.firstName.isValid}
             onChange={(e) => inputOnChange("firstName", e.target.value)}
+            pattern="[A-Za-z]*"
             placeholder="Enter first name..."
             required
             id="firstName"
@@ -117,8 +125,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           isValid={formData.phoneNumber.isValid}
           onChange={(numberDetails) => {
             const { countryCode, number } = numberDetails;
-            const phoneNumber = number ? `${countryCode}${number}` : "";
-            inputOnChange("phoneNumber", phoneNumber);
+            inputOnChangePhoneNumber(countryCode, number);
           }}
           onBlur={(numberDetails) => {
             const { countryCode, number } = numberDetails;
