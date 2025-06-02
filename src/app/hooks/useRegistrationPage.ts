@@ -20,7 +20,17 @@ const useRegistrationPage = () => {
     setViewToTop();
   };
 
-  return { pageState, setPageState, onSubmitPersonDetailsForm, onSendOTP };
+  const onVerifyCode = async () => {
+    console.log("submit verification code");
+  };
+
+  return {
+    pageState,
+    setPageState,
+    onSubmitPersonDetailsForm,
+    onSendOTP,
+    onVerifyCode,
+  };
 };
 
 export default useRegistrationPage;

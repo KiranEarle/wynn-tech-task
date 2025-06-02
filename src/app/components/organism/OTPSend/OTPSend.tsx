@@ -1,8 +1,9 @@
 import { useState } from "react";
 
 import Text from "@components/atoms/Text";
-import Button from "@components/atoms/Button";
 import Radio from "@components/atoms/Radio";
+import OTPFormLayout from "@components/molecules/OTPFormLayout";
+
 import { personalDetails } from "@constance/pageStates";
 
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
@@ -21,60 +22,47 @@ const OTPSend = ({ onSendOTP, setPageState }: OTPSendProps) => {
   const handleBackButton = () => {
     setPageState(personalDetails);
   };
-  const handleSendOption = () => {
+  const handleSendOption = async () => {
     onSendOTP(sendOption);
   };
 
   return (
-    <form className={style.OTPSend_form}>
+    <OTPFormLayout backButton={handleBackButton} onSubmit={handleSendOption}>
       <Text
-        type="h2"
-        text="OTP Verification"
+        type="h6"
+        text="Send Code"
         priority="heading"
-        decoration="underline"
-        className={style.OTPSend_form_header}
+        className={style.OTPSend_form_code_header}
       />
-      <div className={style.OTPSend_section}>
-        <Text
-          type="h6"
-          text="Send Code"
-          priority="heading"
-          className={style.OTPSend_form_code_header}
+      <Text
+        type="p"
+        text="How would you like to receive the code?"
+        priority="normal"
+        className={style.OTPSend_form_code_p}
+      />
+      <div className={style.OTPSend_radio}>
+        <Radio
+          label="Send to Phone"
+          name="otp"
+          value="phone"
+          onChange={(e) => {
+            if (e.target.checked) {
+              setSendOption(e.target.value as OTPOptions);
+            }
+          }}
         />
-        <Text
-          type="p"
-          text="How would you like to receive the code?"
-          priority="normal"
-          className={style.OTPSend_form_code_p}
+        <Radio
+          label="Send to Email"
+          name="otp"
+          value="email"
+          onChange={(e) => {
+            if (e.target.checked) {
+              setSendOption(e.target.value as OTPOptions);
+            }
+          }}
         />
-        <div className={style.OTPSend_radio}>
-          <Radio
-            label="Send to Phone"
-            name="otp"
-            value="phone"
-            onChange={(e) => {
-              if (e.target.checked) {
-                setSendOption(e.target.value as OTPOptions);
-              }
-            }}
-          />
-          <Radio
-            label="Send to Email"
-            name="otp"
-            value="email"
-            onChange={(e) => {
-              if (e.target.checked) {
-                setSendOption(e.target.value as OTPOptions);
-              }
-            }}
-          />
-        </div>
       </div>
-      <div className={style.OTPSend_cta}>
-        <Button label="Back" priority="secondary" onClick={handleBackButton} />
-        <Button label="Next" onClick={handleSendOption} />
-      </div>
-    </form>
+    </OTPFormLayout>
   );
 };
 

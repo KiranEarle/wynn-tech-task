@@ -1,0 +1,59 @@
+.OTPVerify_form_code_header {
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-xl);
+}
+
+.OTPVerify_form_code_p {
+  margin-bottom: var(--space-4);
+  color: var(--font-grey);
+}
+
+.OTPVerify_resend_code {
+  color: var(--font-grey);
+}
+
+.OTPVerify_resend_code span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.OTPVerify_input_wrapper {
+  position: relative;
+  width: fit-content;
+  cursor: text;
+}
+
+.OTPVerify_input_internal {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.OTPVerify_input_fields {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.OTPVerify_input_field_box {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-brown);
+  color: var(--color-brown);
+  font-size: var(--font-size-2xl);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+  background: var(--color-white);
+  font-family: var(--font-avenir-lt);
+}
+
+@media screen and (min-width: 680px) {
+  .OTPVerify_input_field_box {
+    width: 80px;
+    height: 80px;
+    font-size: var(--font-size-5xl);
+  }
+}
