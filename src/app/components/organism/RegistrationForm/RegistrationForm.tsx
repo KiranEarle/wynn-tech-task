@@ -15,7 +15,7 @@ import { textRegex, emailRegex, phoneNumberRegex } from "@constance/regex";
 
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 
-import "./registration-form.css";
+import style from "./registration-form.module.css";
 
 type RegistrationFormProps = {
   inputOnChange: (field: string, value: string) => void;
@@ -38,16 +38,16 @@ const RegistrationForm = (props: RegistrationFormProps) => {
     isTermChecked,
   } = props;
   return (
-    <form className="Registration-form">
-      <div className="Registration-form-personal-info">
+    <form className={style.Registration_form}>
+      <div className={style.Registration_form_personal_info}>
         <Text
           type="h2"
           text="Personal Info"
           priority="heading"
           decoration="underline"
-          className="Registration-form-headers"
+          className={style.Registration_form_headers}
         />
-        <div className="Registration-name-section">
+        <div className={style.Registration_name_section}>
           <InputField
             label={formData.firstName.label}
             value={formData.firstName.value}
@@ -105,7 +105,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           text="Contact details"
           priority="heading"
           decoration="underline"
-          className="Registration-form-headers"
+          className={style.Registration_form_headers}
         />
         <InputField
           label={formData.email.label}
@@ -135,7 +135,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           }}
         />
       </div>
-      <div className="Registration-cta">
+      <div className={style.Registration_cta}>
         <Checkbox
           label={() => {
             return (

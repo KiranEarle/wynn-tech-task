@@ -1,38 +1,35 @@
-.Registration-form {
+.Registration_form {
 }
 
-.Registration-form-personal-info {
+.Registration_form_personal_info {
   margin-bottom: var(--space-8);
 }
 
-.Registration-form-personal-info-heading {
-}
-
-.Registration-form-headers {
+.Registration_form_headers {
   margin-bottom: var(--space-8);
 }
 
-.Registration-name-section {
+.Registration_name_section {
   display: block;
   gap: var(--space-6);
 }
 
 @media screen and (min-width: 1024px) {
-  .Registration-name-section {
+  .Registration_name_section {
     display: flex;
   }
 }
 
-.Registration-cta {
+.Registration_cta {
   margin-top: var(--space-10);
 }
 
-.Registration-cta a {
+.Registration_cta a {
   text-decoration: underline;
   color: var(--color-text-brown);
 }
 
-.Registration-cta button {
+.Registration_cta button {
   margin-top: var(--space-12);
   width: 217px;
 }
