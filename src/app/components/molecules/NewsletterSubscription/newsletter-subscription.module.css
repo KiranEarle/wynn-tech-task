@@ -90,6 +90,7 @@
   height: 48px;
   width: 100%;
   background-color: var(--color-white);
+  color: var(--color-black);
   font-family: var(--font-avenir-lt);
   border: none;
   font-size: var(--font-size-md);

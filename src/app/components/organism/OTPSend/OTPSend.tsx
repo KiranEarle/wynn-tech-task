@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, Dispatch } from "react";
 
 import Text from "@components/atoms/Text";
 import Radio from "@components/atoms/Radio";
@@ -11,18 +11,25 @@ import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 import style from "./otp-send.module.css";
 
 export type OTPSendProps = {
-  onSendOTP: (type: WynnRegistrationsApp.OTSRequestTypes) => Promise<void>;
+  onSendOTP: () => Promise<void>;
   setPageState: (page: WynnRegistrationsApp.PageStates) => void;
+  setSendOTPOption: Dispatch<
+    SetStateAction<WynnRegistrationsApp.OTSRequestTypes>
+  >;
+  sendOTPOption: WynnRegistrationsApp.OTSRequestTypes;
 };
 
-const OTPSend = ({ onSendOTP, setPageState }: OTPSendProps) => {
-  const [sendOption, setSendOption] =
-    useState<WynnRegistrationsApp.OTSRequestTypes>("phone");
+const OTPSend = ({
+  onSendOTP,
+  setPageState,
+  sendOTPOption,
+  setSendOTPOption,
+}: OTPSendProps) => {
   const handleBackButton = () => {
     setPageState(personalDetails);
   };
   const handleSendOption = async () => {
-    onSendOTP(sendOption);
+    await onSendOTP();
   };
 
   return (
@@ -44,10 +51,10 @@ const OTPSend = ({ onSendOTP, setPageState }: OTPSendProps) => {
           label="Send to Phone"
           name="otp"
           value="phone"
-          checked={sendOption === "phone"}
+          checked={sendOTPOption === "phone"}
           onChange={(e) => {
             if (e.target.checked) {
-              setSendOption(
+              setSendOTPOption(
                 e.target.value as WynnRegistrationsApp.OTSRequestTypes
               );
             }
@@ -57,10 +64,10 @@ const OTPSend = ({ onSendOTP, setPageState }: OTPSendProps) => {
           label="Send to Email"
           name="otp"
           value="email"
-          checked={sendOption === "email"}
+          checked={sendOTPOption === "email"}
           onChange={(e) => {
             if (e.target.checked) {
-              setSendOption(
+              setSendOTPOption(
                 e.target.value as WynnRegistrationsApp.OTSRequestTypes
               );
             }

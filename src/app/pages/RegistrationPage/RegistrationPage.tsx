@@ -24,6 +24,10 @@ const RegistrationPage = () => {
     updateFormPhoneNumber,
     isTermChecked,
     handleCheckTerms,
+    sendOTPOption,
+    setSendOTPOption,
+    handleOTPOnChange,
+    otpCode,
   } = useRegistrationPage();
 
   return (
@@ -62,11 +66,22 @@ const RegistrationPage = () => {
         />
       )}
       {pageState.state === "otpSendCode" && (
-        <OTPSend setPageState={setPageState} onSendOTP={onSendOTP} />
+        <OTPSend
+          sendOTPOption={sendOTPOption}
+          setSendOTPOption={setSendOTPOption}
+          setPageState={setPageState}
+          onSendOTP={onSendOTP}
+        />
       )}
 
       {pageState.state === "otpVerify" && (
-        <OTPVerify setPageState={setPageState} onVerifyCode={onVerifyCode} />
+        <OTPVerify
+          onSendOTP={onSendOTP}
+          setPageState={setPageState}
+          onVerifyCode={onVerifyCode}
+          handleOTPOnChange={handleOTPOnChange}
+          otpCode={otpCode}
+        />
       )}
     </div>
   );

@@ -22,6 +22,11 @@ const useRegistrationPage = () => {
     isValid: "",
   });
 
+  const [sendOTPOption, setSendOTPOption] =
+    useState<WynnRegistrationsApp.OTSRequestTypes>("phone");
+
+  const [otpCode, setOtpCode] = useState("");
+
   const handleCheckTerms = (checked: boolean) => {
     setIsTermsCheck(() => ({ value: checked, isValid: "" }));
   };
@@ -122,9 +127,9 @@ const useRegistrationPage = () => {
     }
   };
 
-  const onSendOTP = async (type: WynnRegistrationsApp.OTSRequestTypes) => {
+  const onSendOTP = async () => {
     try {
-      await submitOTPRequestType(type);
+      await submitOTPRequestType(sendOTPOption);
       setPageState(otpVerify);
       setViewToTop();
     } catch (e) {
@@ -132,8 +137,13 @@ const useRegistrationPage = () => {
     }
   };
 
+  const handleOTPOnChange = (e) => {
+    const newValue = e.target.value.replace(/\D/g, "").slice(0, 4); // only digits, max 4
+    setOtpCode(newValue);
+  };
+
   const onVerifyCode = async () => {
-    console.log("submit verification code");
+    console.log("submit verification code", otpCode);
   };
 
   return {
@@ -148,6 +158,10 @@ const useRegistrationPage = () => {
     inputValidation,
     isTermChecked,
     handleCheckTerms,
+    sendOTPOption,
+    setSendOTPOption,
+    handleOTPOnChange,
+    otpCode,
   };
 };
 

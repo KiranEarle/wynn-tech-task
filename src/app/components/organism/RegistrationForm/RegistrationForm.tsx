@@ -37,7 +37,6 @@ const RegistrationForm = (props: RegistrationFormProps) => {
     onCheckTerms,
     isTermChecked,
   } = props;
-  console.log({ isTermChecked });
   return (
     <form className="Registration-form">
       <div className="Registration-form-personal-info">

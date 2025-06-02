@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 import Text from "@components/atoms/Text";
 import OTPFormLayout from "@components/molecules/OTPFormLayout";
@@ -10,19 +10,21 @@ import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 import style from "./otp-verify.module.css";
 
 export type OTPVerifyProps = {
-  onVerifyCode: (code: string) => Promise<void>;
+  onVerifyCode: () => Promise<void>;
   setPageState: (page: WynnRegistrationsApp.PageStates) => void;
+  onSendOTP: () => Promise<void>;
+  handleOTPOnChange: (e) => void;
+  otpCode: string;
 };
 
-const OTPVerify = ({ onVerifyCode, setPageState }: OTPVerifyProps) => {
-  const [code, setCode] = useState("");
-
+const OTPVerify = ({
+  onVerifyCode,
+  setPageState,
+  onSendOTP,
+  otpCode,
+  handleOTPOnChange,
+}: OTPVerifyProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleChange = (e) => {
-    const newValue = e.target.value.replace(/\D/g, "").slice(0, 4); // only digits, max 4
-    setCode(newValue);
-  };
 
   const handleClick = () => {
     inputRef?.current?.focus();
@@ -33,7 +35,11 @@ const OTPVerify = ({ onVerifyCode, setPageState }: OTPVerifyProps) => {
   };
 
   const handleVerifyCode = async () => {
-    onVerifyCode(code);
+    await onVerifyCode();
+  };
+
+  const handleSendOption = async () => {
+    await onSendOTP();
   };
 
   return (
@@ -55,8 +61,8 @@ const OTPVerify = ({ onVerifyCode, setPageState }: OTPVerifyProps) => {
           id="otp-code"
           type="text"
           inputMode="numeric"
-          value={code}
-          onChange={handleChange}
+          value={otpCode}
+          onChange={handleOTPOnChange}
           maxLength={4}
           ref={inputRef}
           className={style.OTPVerify_input_internal}
@@ -65,7 +71,7 @@ const OTPVerify = ({ onVerifyCode, setPageState }: OTPVerifyProps) => {
           {[0, 1, 2, 3].map((i) => {
             return (
               <div key={i} className={style.OTPVerify_input_field_box}>
-                {code[i] || ""}
+                {otpCode[i] || ""}
               </div>
             );
           })}
@@ -73,7 +79,7 @@ const OTPVerify = ({ onVerifyCode, setPageState }: OTPVerifyProps) => {
       </div>
       <span className={style.OTPVerify_resend_code}>
         Didn&apos;t get a code?{" "}
-        <span onClick={() => console.log("Resend")}>Click to resend.</span>
+        <span onClick={handleSendOption}>Click to resend.</span>
       </span>
     </OTPFormLayout>
   );
