@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-namespace */
 namespace WynnRegistrationsApp {
   export type BaseField = {
     label?: string;
-    regex?: string;
+    isValid?: string;
     value?: string;
     isRequired?: boolean;
   };

@@ -1,16 +1,16 @@
-.Input-field {
+.Input_field {
   width: 100%;
   display: block;
 }
 
-.Input-field-label {
+.Input_field_label {
   font-family: var(--font-big-caslon);
   font-size: var(--font-size-sm);
   display: block;
   margin-bottom: var(--space-2);
 }
 
-.Input-field-internal {
+.Input_field_internal {
   display: block;
   width: 100%;
   height: 60px;
@@ -22,4 +22,9 @@
   font-family: var(--font-avenir-lt);
   padding: 0 var(--font-size-sm);
   margin-bottom: var(--space-6);
+}
+
+.not_valid {
+  border: 1.5px solid red;
+  color: red;
 }

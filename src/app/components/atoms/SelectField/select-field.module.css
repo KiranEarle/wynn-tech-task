@@ -1,17 +1,17 @@
-.Select-field {
+.Select_field {
   width: 100%;
   display: block;
   position: relative;
 }
 
-.Select-field-label {
+.Select_field_label {
   font-family: var(--font-big-caslon);
   font-size: var(--font-size-sm);
   display: block;
   margin-bottom: var(--space-2);
 }
 
-.Select-field-internal {
+.Select_field_internal {
   display: block;
   width: 100%;
   height: 60px;
@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-.Select-field-list {
+.Select_field_list {
   max-height: 360px;
   min-height: 60px;
   width: 100%;
@@ -39,7 +39,7 @@
   cursor: pointer;
 }
 
-.Select-field-list-item {
+.Select_field_list_item {
   padding: var(--font-size-sm) var(--font-size-sm);
   background-color: var(--color-white);
   color: var(--font-black);
@@ -52,7 +52,7 @@
   cursor: pointer;
 }
 
-.selected-option {
+.selected_option {
   background-color: var(--color-border-grey);
 }
 
@@ -63,4 +63,9 @@
   position: absolute;
   top: 50px;
   right: 20px;
+}
+
+.not_valid {
+  border: 1.5px solid red;
+  color: red;
 }

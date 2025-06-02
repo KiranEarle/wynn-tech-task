@@ -3,17 +3,26 @@
 
 import { useState, useRef, useEffect } from "react";
 
-import "./select-field.css";
+import style from "./select-field.module.css";
 
 export type SelectFieldProps = {
   label?: string;
   placeholder?: string;
+  isValid?: string;
   options?: { value: string; label: string }[];
-  onChange?: (e: React.MouseEvent<HTMLInputElement>) => void;
 } & React.SelectHTMLAttributes<HTMLInputElement>;
 
 const SelectField = (props: SelectFieldProps) => {
-  const { id, label, required, placeholder, options, onChange } = props;
+  const {
+    id,
+    label,
+    required,
+    placeholder,
+    options,
+    onChange,
+    onBlur,
+    isValid = "",
+  } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState<{
@@ -22,9 +31,18 @@ const SelectField = (props: SelectFieldProps) => {
   }>({ label: "", value: "" });
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const handleOnChange = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleOnChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLInputElement, MouseEvent>
+      | React.FocusEvent<HTMLInputElement>
+  ) => {
     if (onChange) {
-      onChange(e);
+      onChange(e as React.ChangeEvent<HTMLInputElement>);
+    }
+
+    if (onBlur) {
+      onBlur(e as React.FocusEvent<HTMLInputElement>);
     }
   };
 
@@ -45,39 +63,42 @@ const SelectField = (props: SelectFieldProps) => {
     <div ref={wrapperRef}>
       <label
         htmlFor={id}
-        className="Select-field"
+        className={style.Select_field}
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <label htmlFor={id} className="Select-field-label">
+        <label htmlFor={id} className={style.Select_field_label}>
           {label} {required ? "*" : ""}
         </label>
         <input
-          className="Select-field-internal"
+          type="text"
+          className={`${style.Select_field_internal} ${style[isValid]}`}
           placeholder={placeholder}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               setIsOpen((prev) => !prev);
             }
           }}
+          onBlur={onBlur}
+          onChange={(e) => console.log({ e })}
           value={value.label}
           readOnly
           id={id}
           {...{ props, options: "" }}
         />
-        <img src="/chevron_icon.svg" alt="chevron" className="chevron" />
+        <img src="/chevron_icon.svg" alt="chevron" className={style.chevron} />
         <div
           onClick={() => setIsOpen(true)}
-          className={`${isOpen ? "Select-field-list" : "hide"}`}
+          className={`${isOpen ? style.Select_field_list : "hide"}`}
         >
           {options?.map((option) => {
             return (
               <input
-                className={`Select-field-list-item ${
-                  value.label === option.label ? "selected-option" : ""
+                className={`${style.Select_field_list_item} ${
+                  value.label === option.label ? style.selected_option : ""
                 }`}
                 id={option.value as string}
                 onClick={(e) => {
-                  setValue(option);
+                  setValue(() => option);
                   handleOnChange(e);
                 }}
                 key={option.label}

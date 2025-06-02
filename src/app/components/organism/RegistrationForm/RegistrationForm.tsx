@@ -18,13 +18,23 @@ import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 import "./registration-form.css";
 
 type RegistrationFormProps = {
-  inputOnChange: (field: string, value) => void;
+  inputOnChange: (field: string, value: string) => void;
+  validateEmailInput: (field: string, value: string) => void;
+  validateTextInput: (field: string, value: string) => void;
+  validateSelectInput: (field: string, value: string) => void;
+  validatePhoneNumberInput: (field: string, value: string) => void;
   formData: WynnRegistrationsApp.PersonalDetailsFormData;
   onSubmit: () => Promise<void>;
 };
 
 const RegistrationForm = (props: RegistrationFormProps) => {
-  const { onSubmit } = props;
+  const {
+    onSubmit,
+    formData,
+    inputOnChange,
+    validateEmailInput,
+    validateTextInput,
+  } = props;
   const [isChecked, setIsChecked] = useState(false);
   return (
     <form className="Registration-form">
@@ -38,33 +48,45 @@ const RegistrationForm = (props: RegistrationFormProps) => {
         />
         <div className="Registration-name-section">
           <InputField
-            label="First Name"
+            label={formData.firstName.label}
+            value={formData.firstName.value}
+            isValid={formData.firstName.isValid}
+            onChange={(e) => inputOnChange("firstName", e.target.value)}
             placeholder="Enter first name..."
             required
             id="firstName"
+            onBlur={(e) => validateTextInput("firstName", e.target.value)}
           />
           <InputField
-            label="Last Name"
+            label={formData.lastName.label}
+            value={formData.lastName.value}
+            isValid={formData.lastName.isValid}
+            onChange={(e) => inputOnChange("lastName", e.target.value)}
             placeholder="Enter last name..."
             required
             id="lastName"
+            onBlur={(e) => validateTextInput("lastName", e.target.value)}
           />
         </div>
         <SelectField
-          label="Gender"
+          label={formData.gender.label}
           id="gender"
           required
           placeholder="Select gender..."
+          isValid={formData.gender.isValid}
           options={genders}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={(e) => inputOnChange("gender", e.target.value)}
+          onBlur={(e) => validateTextInput("gender", e.target.value)}
         />
         <SelectField
           label="Your Residence Country"
-          id="country"
+          id="residency"
           required
           placeholder="Select residence country..."
+          isValid={formData.residency.isValid}
           options={countries}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={(e) => inputOnChange("residency", e.target.value)}
+          onBlur={(e) => validateTextInput("residency", e.target.value)}
         />
       </div>
       <div>
@@ -76,7 +98,11 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           className="Registration-form-headers"
         />
         <InputField
-          label="Email"
+          label={formData.email.label}
+          value={formData.email.value}
+          isValid={formData.email.isValid}
+          onChange={(e) => inputOnChange("email", e.target.value)}
+          onBlur={(e) => validateEmailInput("email", e.target.value)}
           type="email"
           placeholder="Enter email address..."
           required

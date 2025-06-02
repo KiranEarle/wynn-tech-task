@@ -18,11 +18,11 @@ const RegistrationPage = () => {
     onSubmitPersonDetailsForm,
     onSendOTP,
     onVerifyCode,
+    personalDataForm,
+    updateForm,
+    validateEmailInput,
+    validateTextInput,
   } = useRegistrationPage();
-
-  const inputOnChange = () => {
-    console.log("inputChange");
-  };
 
   return (
     <div className="Registration-page">
@@ -48,9 +48,13 @@ const RegistrationPage = () => {
       </div>
       {pageState.state === "personalDetails" && (
         <RegistrationForm
-          formData={{} as WynnRegistrationsApp.PersonalDetailsFormData}
-          inputOnChange={inputOnChange}
+          formData={
+            personalDataForm as WynnRegistrationsApp.PersonalDetailsFormData
+          }
+          inputOnChange={updateForm}
           onSubmit={onSubmitPersonDetailsForm}
+          validateEmailInput={validateEmailInput}
+          validateTextInput={validateTextInput}
         />
       )}
       {pageState.state === "otpSendCode" && (
