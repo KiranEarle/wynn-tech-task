@@ -5,18 +5,19 @@ import TickSvg from "@public/tick.svg";
 export type CheckboxProps = {
   label?: () => React.ReactNode;
   onClick?: (value: boolean) => void;
+  isValid: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const Checkbox = (props: CheckboxProps) => {
   const { id, onClick, checked } = props;
-  const { label, ...inputProps } = props;
+  const { label, isValid = "", ...inputProps } = props;
   const handleOnChange = (value: boolean) => {
     if (onClick) {
       onClick(value);
     }
   };
   return (
-    <label className={style.Checkbox_container}>
+    <label className={`${style.Checkbox_container} ${style[isValid]}`}>
       <label
         htmlFor={id}
         className={`${style.Checkbox} ${checked ? style.checked : ""}`}

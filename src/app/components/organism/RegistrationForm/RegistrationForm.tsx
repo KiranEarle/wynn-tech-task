@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
 
-import { useState } from "react";
-
 import Text from "@components/atoms/Text";
 import InputField from "@components/atoms/InputField";
 import SelectField from "@components/atoms/SelectField";
@@ -25,6 +23,8 @@ type RegistrationFormProps = {
   inputValidation: (field: string, value: string, regex: RegExp) => void;
   formData: WynnRegistrationsApp.PersonalDetailsFormData;
   onSubmit: () => Promise<void>;
+  onCheckTerms: (checked: boolean) => void;
+  isTermChecked: { value: boolean; isValid: string };
 };
 
 const RegistrationForm = (props: RegistrationFormProps) => {
@@ -34,8 +34,10 @@ const RegistrationForm = (props: RegistrationFormProps) => {
     inputOnChange,
     inputValidation,
     inputOnChangePhoneNumber,
+    onCheckTerms,
+    isTermChecked,
   } = props;
-  const [isChecked, setIsChecked] = useState(false);
+  console.log({ isTermChecked });
   return (
     <form className="Registration-form">
       <div className="Registration-form-personal-info">
@@ -144,8 +146,9 @@ const RegistrationForm = (props: RegistrationFormProps) => {
               </span>
             );
           }}
-          checked={isChecked}
-          onClick={(value) => setIsChecked(!value)}
+          isValid={isTermChecked.isValid}
+          checked={isTermChecked.value}
+          onClick={(value) => onCheckTerms(!value)}
         />
         <Button label="Next" onClick={() => onSubmit()} />
       </div>

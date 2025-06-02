@@ -22,6 +22,8 @@ const RegistrationPage = () => {
     updateForm,
     inputValidation,
     updateFormPhoneNumber,
+    isTermChecked,
+    handleCheckTerms,
   } = useRegistrationPage();
 
   return (
@@ -55,6 +57,8 @@ const RegistrationPage = () => {
           onSubmit={onSubmitPersonDetailsForm}
           inputValidation={inputValidation}
           inputOnChangePhoneNumber={updateFormPhoneNumber}
+          onCheckTerms={handleCheckTerms}
+          isTermChecked={isTermChecked}
         />
       )}
       {pageState.state === "otpSendCode" && (

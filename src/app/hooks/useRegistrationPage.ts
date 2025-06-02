@@ -16,6 +16,14 @@ const useRegistrationPage = () => {
     useState<WynnRegistrationsApp.PageStates>(personalDetails);
 
   const [personalDataForm, setPersonalDataFrom] = useState(initialPersonalData);
+  const [isTermChecked, setIsTermsCheck] = useState({
+    value: false,
+    isValid: "",
+  });
+
+  const handleCheckTerms = (checked: boolean) => {
+    setIsTermsCheck(() => ({ value: checked, isValid: "" }));
+  };
 
   const updateForm = (field: string, value: string) => {
     const updateDataSet = personalDataForm[field];
@@ -55,10 +63,13 @@ const useRegistrationPage = () => {
   };
 
   const onSubmitPersonDetailsForm = async () => {
+    if (!isTermChecked.value) {
+      setIsTermsCheck((prev) => ({ ...prev, isValid: "not_valid" }));
+    }
+
     const formKeys = Object.keys(personalDataForm);
     formKeys.forEach((key) => {
       let regex: RegExp = textRegex;
-      console.log({ key });
 
       switch (key) {
         case "firstName":
@@ -88,7 +99,8 @@ const useRegistrationPage = () => {
     if (
       formKeys
         .map((data) => personalDataForm[data])
-        .some((data) => data.isValid === "not_valid")
+        .some((data) => data.isValid === "not_valid") ||
+      !isTermChecked.value
     ) {
       return;
     }
@@ -128,6 +140,8 @@ const useRegistrationPage = () => {
     updateForm,
     updateFormPhoneNumber,
     inputValidation,
+    isTermChecked,
+    handleCheckTerms,
   };
 };
 

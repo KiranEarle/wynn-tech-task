@@ -37,3 +37,11 @@
   height: 0px;
   display: none;
 }
+
+.not_valid {
+  color: var(--color-red);
+}
+
+.not_valid .Checkbox {
+  border: 0.5px solid var(--color-red);
+}
