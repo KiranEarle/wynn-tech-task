@@ -15,8 +15,18 @@ namespace WynnRegistrationsApp {
     firstName: FormInputField;
     lastName: FormInputField;
     gender: FormSelectField;
+    residency: FormSelectField;
     email: FormInputField;
     phoneNumber: FormSelectField;
+  };
+
+  export type PersonalDetails = {
+    firstName: string;
+    lastName: string;
+    gender: string;
+    residency: string;
+    email: string;
+    phoneNumber: string;
   };
 
   export type PhoneNumberFieldData = {

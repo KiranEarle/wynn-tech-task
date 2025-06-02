@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import submitPersonalDetails from "@services/submitPersonalDetails";
 import { personalDetails, otpSendCode, otpVerify } from "@constance/pageStates";
 
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
@@ -11,8 +12,20 @@ const useRegistrationPage = () => {
   const setViewToTop = () => window.scrollTo({ top: 0 });
 
   const onSubmitPersonDetailsForm = async () => {
-    setPageState(otpSendCode);
-    setViewToTop();
+    try {
+      await submitPersonalDetails({
+        firstName: "",
+        lastName: "",
+        gender: "",
+        email: "",
+        phoneNumber: "",
+        residency: "",
+      });
+      setPageState(otpSendCode);
+      setViewToTop();
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const onSendOTP = async () => {

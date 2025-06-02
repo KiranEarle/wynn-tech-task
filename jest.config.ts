@@ -14,6 +14,7 @@ const customJestConfig = {
     "^@app-type/(.*)$": "<rootDir>/src/app/types/$1",
     "^@hooks/(.*)$": "<rootDir>/src/app/hooks/$1",
     "^@constance/(.*)$": "<rootDir>/src/app/constance/$1",
+    "^@services/(.*)$": "<rootDir>/src/app/services/$1",
   },
 
   testEnvironment: "jsdom",

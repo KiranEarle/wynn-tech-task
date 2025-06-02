@@ -27,6 +27,7 @@
       "@pages/*": ["./src/app/pages/*"],
       "@app-types/*": ["./src/app/types/*"],
       "@constance/*": ["./src/app/constance/*"],
+      "@services/*": ["./src/app/services/*"],
       "@hooks/*": ["./src/app/hooks/*"],
       "@public/*": ["./public/*"]
     }
