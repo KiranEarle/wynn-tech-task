@@ -10,15 +10,14 @@ import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 
 import style from "./otp-send.module.css";
 
-type OTPOptions = "phone" | "email";
-
 export type OTPSendProps = {
-  onSendOTP: (type: OTPOptions) => Promise<void>;
+  onSendOTP: (type: WynnRegistrationsApp.OTSRequestTypes) => Promise<void>;
   setPageState: (page: WynnRegistrationsApp.PageStates) => void;
 };
 
 const OTPSend = ({ onSendOTP, setPageState }: OTPSendProps) => {
-  const [sendOption, setSendOption] = useState<OTPOptions>("phone");
+  const [sendOption, setSendOption] =
+    useState<WynnRegistrationsApp.OTSRequestTypes>("phone");
   const handleBackButton = () => {
     setPageState(personalDetails);
   };
@@ -45,9 +44,12 @@ const OTPSend = ({ onSendOTP, setPageState }: OTPSendProps) => {
           label="Send to Phone"
           name="otp"
           value="phone"
+          checked={sendOption === "phone"}
           onChange={(e) => {
             if (e.target.checked) {
-              setSendOption(e.target.value as OTPOptions);
+              setSendOption(
+                e.target.value as WynnRegistrationsApp.OTSRequestTypes
+              );
             }
           }}
         />
@@ -55,9 +57,12 @@ const OTPSend = ({ onSendOTP, setPageState }: OTPSendProps) => {
           label="Send to Email"
           name="otp"
           value="email"
+          checked={sendOption === "email"}
           onChange={(e) => {
             if (e.target.checked) {
-              setSendOption(e.target.value as OTPOptions);
+              setSendOption(
+                e.target.value as WynnRegistrationsApp.OTSRequestTypes
+              );
             }
           }}
         />

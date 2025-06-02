@@ -37,6 +37,8 @@ namespace WynnRegistrationsApp {
     countryCode: string;
   };
 
+  export type OTSRequestTypes = "phone" | "email";
+
   export type PageStates = {
     state: "personalDetails" | "otpSendCode" | "otpVerify";
     stepNumber: string;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import submitPersonalDetails from "@services/submitPersonalDetails";
+import submitOTPRequestType from "@services/submitOTPRequestType";
 
 import setViewToTop from "@helpers/setViewToTop";
 
@@ -121,9 +122,14 @@ const useRegistrationPage = () => {
     }
   };
 
-  const onSendOTP = async () => {
-    setPageState(otpVerify);
-    setViewToTop();
+  const onSendOTP = async (type: WynnRegistrationsApp.OTSRequestTypes) => {
+    try {
+      await submitOTPRequestType(type);
+      setPageState(otpVerify);
+      setViewToTop();
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const onVerifyCode = async () => {
