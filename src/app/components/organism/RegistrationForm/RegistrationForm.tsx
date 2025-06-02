@@ -74,6 +74,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           required
           placeholder="Select gender..."
           isValid={formData.gender.isValid}
+          value={formData.gender.value}
           options={genders}
           onChange={(e) => inputOnChange("gender", e.target.value)}
           onBlur={(e) => validateTextInput("gender", e.target.value)}
@@ -84,6 +85,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           required
           placeholder="Select residence country..."
           isValid={formData.residency.isValid}
+          value={formData.residency.value}
           options={countries}
           onChange={(e) => inputOnChange("residency", e.target.value)}
           onBlur={(e) => validateTextInput("residency", e.target.value)}

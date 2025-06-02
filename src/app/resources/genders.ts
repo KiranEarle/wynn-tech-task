@@ -1,6 +1,3 @@
-const genders = [
-  { label: "Male", value: "male" },
-  { label: "Female", value: "female" },
-];
+const genders = ["Male", "Female"];
 
 export default genders;

@@ -9,7 +9,7 @@ export type SelectFieldProps = {
   label?: string;
   placeholder?: string;
   isValid?: string;
-  options?: { value: string; label: string }[];
+  options?: string[];
 } & React.SelectHTMLAttributes<HTMLInputElement>;
 
 const SelectField = (props: SelectFieldProps) => {
@@ -22,14 +22,16 @@ const SelectField = (props: SelectFieldProps) => {
     onChange,
     onBlur,
     isValid = "",
+    value,
   } = props;
-
   const [isOpen, setIsOpen] = useState(false);
-  const [value, setValue] = useState<{
-    label: string;
-    value: string;
-  }>({ label: "", value: "" });
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const ignoreBlur = useRef(false);
+
+  const handleIgnoreBlur = () => {
+    ignoreBlur.current = true;
+  };
 
   const handleOnChange = (
     e:
@@ -78,32 +80,41 @@ const SelectField = (props: SelectFieldProps) => {
               setIsOpen((prev) => !prev);
             }
           }}
-          onBlur={onBlur}
+          onBlur={(e) => {
+            if (ignoreBlur.current) {
+              ignoreBlur.current = false;
+              return;
+            }
+            onBlur(e);
+          }}
           onChange={(e) => console.log({ e })}
-          value={value.label}
+          value={value}
           readOnly
           id={id}
           {...{ props, options: "" }}
         />
         <img src="/chevron_icon.svg" alt="chevron" className={style.chevron} />
         <div
-          onClick={() => setIsOpen(true)}
+          onMouseDown={handleIgnoreBlur}
+          onClick={() => {
+            setIsOpen(true);
+          }}
           className={`${isOpen ? style.Select_field_list : "hide"}`}
         >
           {options?.map((option) => {
             return (
               <input
                 className={`${style.Select_field_list_item} ${
-                  value.label === option.label ? style.selected_option : ""
+                  value === option ? style.selected_option : ""
                 }`}
-                id={option.value as string}
+                id={option}
+                onMouseDown={handleIgnoreBlur}
                 onClick={(e) => {
-                  setValue(() => option);
                   handleOnChange(e);
                 }}
-                key={option.label}
+                key={option}
                 type="button"
-                value={option.label}
+                value={option}
               />
             );
           })}
