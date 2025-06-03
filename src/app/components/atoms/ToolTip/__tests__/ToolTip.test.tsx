@@ -9,9 +9,7 @@ describe("Tooltip", () => {
     render(<Tooltip text="This is a tooltip" />);
 
     expect(screen.getByText("This is a tooltip")).toBeInTheDocument();
-    // The svg icon is rendered as an SVG element with a class name from styles.icon
-    const icon = screen.getByRole("img", { hidden: true }); // SVGs may not have role img by default, fallback below
-    expect(icon || screen.getByTestId("icon-svg")).toBeInTheDocument();
+    expect(screen.getByTestId("icon-svg")).toBeInTheDocument();
   });
 
   it("applies the default position class", () => {

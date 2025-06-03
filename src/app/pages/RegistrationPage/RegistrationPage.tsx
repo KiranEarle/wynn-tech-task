@@ -83,6 +83,9 @@ const RegistrationPage = () => {
           setPageState={setPageState}
           onVerifyCode={onVerifyCode}
           handleOTPOnChange={handleOTPOnChange}
+          phoneNumber={personalDataForm.phoneNumber.fullNumber}
+          emailAddress={personalDataForm.email.value}
+          sendOTPOption={sendOTPOption}
           otpCode={otpCode}
           isSubmitForm={isSubmitForm}
         />

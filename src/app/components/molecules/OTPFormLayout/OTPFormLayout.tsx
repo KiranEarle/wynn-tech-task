@@ -29,8 +29,14 @@ const OTPFormLayout = ({
       />
       <div className={style.OTPLayout_section}>{children}</div>
       <div className={style.OTPLayout_cta}>
-        <Button label="Back" priority="secondary" onClick={backButton} />
         <Button
+          testId="ots-form-back-button"
+          label="Back"
+          priority="secondary"
+          onClick={backButton}
+        />
+        <Button
+          testId="ots-form-submit-button"
           isLoading={isSubmitForm}
           loadingText={loadingText}
           label="Next"

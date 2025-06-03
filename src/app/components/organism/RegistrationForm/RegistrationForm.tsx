@@ -59,6 +59,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
             pattern="[A-Za-z]*"
             placeholder="Enter first name..."
             required
+            testId="first-name"
             id="firstName"
             onBlur={(e) =>
               inputValidation("firstName", e.target.value, textRegex)
@@ -73,6 +74,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
             placeholder="Enter last name..."
             required
             id="lastName"
+            testId="last-name"
             onBlur={(e) =>
               inputValidation("lastName", e.target.value, textRegex)
             }
@@ -121,6 +123,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           onBlur={(e) => inputValidation("email", e.target.value, emailRegex)}
           tooltip="Enter email"
           type="email"
+          testId="email"
           placeholder="Enter email address..."
           required
           id="email"
@@ -129,6 +132,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           label={formData.phoneNumber.label}
           required
           id="phoneNumber"
+          testId="phone-number"
           value={formData.phoneNumber.value}
           isValid={formData.phoneNumber.isValid}
           tooltip="Select phone number"

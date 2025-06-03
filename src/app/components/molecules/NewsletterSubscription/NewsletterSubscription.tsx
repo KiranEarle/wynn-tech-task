@@ -28,6 +28,7 @@ const NewsletterSubscription = () => {
           <form className={style.Newsletter_email}>
             <input placeholder="Your email address" />
             <Button
+              testId="newsletter"
               label="Join The Newsletter"
               priority="secondary"
               onClick={onClick}

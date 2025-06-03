@@ -24,7 +24,7 @@ const Checkbox = (props: CheckboxProps) => {
       >
         <input
           className={style.Checkbox_internal}
-          readOnly
+          onChange={() => handleOnChange(checked as boolean)}
           id={id}
           type="checkbox"
           {...inputProps}

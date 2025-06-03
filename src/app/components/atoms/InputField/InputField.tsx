@@ -8,6 +8,7 @@ export type InputProps = {
   setValidation?: (value: string) => void;
   validationText?: string;
   tooltip?: string;
+  testId?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input = (props: InputProps) => {
@@ -19,6 +20,7 @@ const Input = (props: InputProps) => {
     onChange,
     isValid = "",
     tooltip,
+    testId,
     ...inputProps
   } = props;
   return (
@@ -34,6 +36,7 @@ const Input = (props: InputProps) => {
       <input
         className={`${style.Input_field_internal}  ${style[isValid]}`}
         onChange={onChange}
+        data-testid={testId}
         value={value}
         id={id}
         {...inputProps}

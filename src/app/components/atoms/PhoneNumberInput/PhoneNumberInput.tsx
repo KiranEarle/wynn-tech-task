@@ -24,6 +24,7 @@ export type PhoneNumberInputProps = {
   ) => void;
   isValid?: string;
   tooltip?: string;
+  testId?: string;
 } & React.SelectHTMLAttributes<HTMLInputElement>;
 
 const PhoneNumberInput = (props: PhoneNumberInputProps) => {
@@ -36,6 +37,7 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
     isValid = "",
     value,
     tooltip,
+    testId,
   } = props;
 
   const [selectCountry, setSelectCountry] = useState(phoneNumberLocals[0]);
@@ -122,6 +124,7 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
             id={id}
             type="tel"
             inputMode="numeric"
+            data-testid={testId}
             pattern="[0-9]*"
             maxLength={10}
             className={style.Phone_number_field_input}

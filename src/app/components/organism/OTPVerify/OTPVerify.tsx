@@ -14,6 +14,9 @@ export type OTPVerifyProps = {
   setPageState: (page: WynnRegistrationsApp.PageStates) => void;
   onSendOTP: () => Promise<void>;
   handleOTPOnChange: (e) => void;
+  sendOTPOption: WynnRegistrationsApp.OTSRequestTypes;
+  phoneNumber: string;
+  emailAddress: string;
   otpCode: string;
   isSubmitForm: boolean;
 };
@@ -25,6 +28,9 @@ const OTPVerify = ({
   otpCode,
   handleOTPOnChange,
   isSubmitForm,
+  sendOTPOption,
+  phoneNumber,
+  emailAddress,
 }: OTPVerifyProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -44,6 +50,13 @@ const OTPVerify = ({
     await onSendOTP();
   };
 
+  const sentOptionText =
+    sendOTPOption === "email"
+      ? `We've sent a code to ${emailAddress}`
+      : `We've sent a code to your phone number ending in ${phoneNumber.slice(
+          -3
+        )}`;
+
   return (
     <OTPFormLayout
       isSubmitForm={isSubmitForm}
@@ -59,7 +72,7 @@ const OTPVerify = ({
       />
       <Text
         type="p"
-        text="We've sent a code to anton@gmail.com"
+        text={sentOptionText}
         priority="normal"
         className={style.OTPVerify_form_code_p}
       />

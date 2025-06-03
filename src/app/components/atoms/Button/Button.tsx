@@ -5,6 +5,7 @@ export type ButtonProps = {
   isLoading?: boolean;
   loadingText?: string;
   priority?: "primary" | "secondary";
+  testId?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = (props: ButtonProps) => {
@@ -14,6 +15,7 @@ const Button = (props: ButtonProps) => {
     onClick,
     loadingText,
     priority = "primary",
+    testId,
     ...buttonProps
   } = props;
   const handleOnClick = (e) => {
@@ -25,6 +27,7 @@ const Button = (props: ButtonProps) => {
   };
   return (
     <button
+      data-testid={testId}
       className={`${style.Button} ${style[priority]}`}
       {...buttonProps}
       disabled={isLoading}
