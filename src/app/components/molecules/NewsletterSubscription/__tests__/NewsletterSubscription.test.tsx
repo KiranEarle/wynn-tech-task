@@ -1,39 +1,51 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import submitEmailSubscription from "@services/submitEmailSubscription";
 import NewsletterSubscription from "../NewsletterSubscription";
 
+jest.mock("@services/submitEmailSubscription");
+
 describe("NewsletterSubscription", () => {
-  it("renders title and description", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("renders correctly", () => {
     render(<NewsletterSubscription />);
-    expect(screen.getByText("Get News & Updates")).toBeInTheDocument();
     expect(
-      screen.getByText(
-        "Get latest developments and exciting news on how we are shaping the future!"
-      )
+      screen.getByPlaceholderText(/your email address/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /join the newsletter/i })
     ).toBeInTheDocument();
   });
 
-  it("renders email input", () => {
+  it("updates email state on input change", () => {
     render(<NewsletterSubscription />);
-    expect(
-      screen.getByPlaceholderText("Your email address")
-    ).toBeInTheDocument();
+    const input = screen.getByPlaceholderText(/your email address/i);
+
+    fireEvent.change(input, { target: { value: "test@example.com" } });
+    expect((input as HTMLInputElement).value).toBe("test@example.com");
   });
 
-  it("renders the newsletter button with testId", () => {
+  it("does not call submitEmailSubscription if email is invalid", () => {
     render(<NewsletterSubscription />);
-    const button = screen.getByTestId("newsletter");
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent("Join The Newsletter".toUpperCase());
-  });
+    const input = screen.getByPlaceholderText(/your email address/i);
+    const button = screen.getByRole("button", { name: /join the newsletter/i });
 
-  it("calls onClick when button is clicked", () => {
-    const consoleSpy = jest.spyOn(console, "log").mockImplementation();
-
-    render(<NewsletterSubscription />);
-    const button = screen.getByTestId("newsletter");
+    fireEvent.change(input, { target: { value: "invalid-email" } });
     fireEvent.click(button);
 
-    expect(consoleSpy).toHaveBeenCalled();
-    consoleSpy.mockRestore();
+    expect(submitEmailSubscription).not.toHaveBeenCalled();
+  });
+
+  it("calls submitEmailSubscription with valid email", () => {
+    render(<NewsletterSubscription />);
+    const input = screen.getByPlaceholderText(/your email address/i);
+    const button = screen.getByRole("button", { name: /join the newsletter/i });
+
+    fireEvent.change(input, { target: { value: "valid@example.com" } });
+    fireEvent.click(button);
+
+    expect(submitEmailSubscription).toHaveBeenCalledWith("valid@example.com");
   });
 });

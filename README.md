@@ -1,37 +1,273 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wynn tech challenge
 
-## Getting Started
+Author: Kiran Earle
+
+Project: Wynn resort tech challenge
+
+Live version of the app on my netlify account (to see it working in prod): https://wynn-tech-task.netlify.app
+
+# Getting Started
 
 First, run the development server:
 
 ```bash
+# To run locally on http://localhost:3000
 npm run dev
 # or
 yarn dev
+
+# To run unit tests
+npm run test
 # or
-pnpm dev
+yarn test
+# or for coverage report
+npm run test:coverage
 # or
-bun dev
+yarn test:coverage
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Technical decisions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app is built using:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### NextJS
 
-## Learn More
+- Easy to build SSR single page applications
+- It is a React framework
+- Provides a lot iif inbuilt features that make developing and deploying the application easy.
 
-To learn more about Next.js, take a look at the following resources:
+### React
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- UI component library (obviously as part of NextJS).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Styling
 
-## Deploy on Vercel
+Because it was a small application I just went with CSS Modules. The reason for this is:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Its a smaller app
+- I wanted to showcase that I understand how to use CSS with without preprocessors.
+- FYI, I have used Styled components, Tailwind and SCSS in other projects
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# wynn-tech-task
+### Test
+
+Using Jest and React Testing Library write unit tests.
+
+# Endpoints
+
+Using mockable.io as prescribed by the spec I create 4 simple endpoints. I created these endpoints just for the purpose of getting through the journey.
+
+So they are quite superficial:
+
+## POST /subscribe/news-letter
+
+### POST {BASE_URL}/subscribe/news-letter
+
+## **Description**
+
+Submits an email address to the newsletter subscription service. This endpoint registers the given email for receiving newsletters and updates.
+
+---
+
+## **Request**
+
+### **Headers**
+
+| Header       | Value            | Required | Description                               |
+| ------------ | ---------------- | -------- | ----------------------------------------- |
+| Content-Type | application/json | Yes      | Indicates the request body is JSON format |
+
+### **Body Parameters**
+
+| Field | Type   | Required | Description                        |
+| ----- | ------ | -------- | ---------------------------------- |
+| email | string | Yes      | A valid email address to subscribe |
+
+#### **Example**
+
+```json
+{
+  "email": "user@example.com"
+}
+```
+
+## **Response**
+
+### Success (HTTP 200 OK / 201 Created)
+
+```json
+{
+  "message": "Success"
+}
+```
+
+### Error Responses
+
+| Status Code | Description              | Example Response       |
+| ----------- | ------------------------ | ---------------------- |
+| 400         | Invalid email format     | `{ "error": "error" }` |
+| 409         | Email already subscribed | `{ "error": "error" }` |
+| 500         | Internal server error    | `{ "error": "error" }` |
+
+## POST /register/submit-otp
+
+### POST {BASE_URL}/register/submit-otp
+
+## **Description**
+
+Verifies a one-time password (OTP) sent to the user. This endpoint is used to confirm the user's identity during registration or login flows by validating a 4-digit OTP code.
+
+---
+
+## **Request**
+
+### **Headers**
+
+| Header       | Value            | Required | Description                               |
+| ------------ | ---------------- | -------- | ----------------------------------------- |
+| Content-Type | application/json | Yes      | Indicates the request body is JSON format |
+
+### **Body Parameters**
+
+| Field | Type   | Required | Description                    |
+| ----- | ------ | -------- | ------------------------------ |
+| code  | string | Yes      | The 4-digit OTP code to verify |
+
+#### **Example**
+
+```json
+{
+  "code": "1234"
+}
+```
+
+## **Response**
+
+### Success (HTTP 200 OK / 201 Created)
+
+```json
+{
+  "message": "Success"
+}
+```
+
+### Error Responses
+
+| Status Code | Description                   | Example Response       |
+| ----------- | ----------------------------- | ---------------------- |
+| 400         | Missing or invalid type value | `{ "error": "error" }` |
+| 500         | Internal server error         | `{ "error": "error" }` |
+
+## POST /register/request-otp
+
+### POST {BASE_URL}/register/request-otp
+
+## **Description**
+
+Sends a request to initiate an OTP (One-Time Password) delivery process. The delivery method can be either via phone or email, depending on the `type` specified in the request body.
+
+---
+
+## **Request**
+
+### **Headers**
+
+| Header       | Value            | Required | Description                                  |
+| ------------ | ---------------- | -------- | -------------------------------------------- |
+| Content-Type | application/json | Yes      | Indicates the request body is in JSON format |
+
+---
+
+### **Body Parameters**
+
+| Parameter | Type   | Required | Description                                               |
+| --------- | ------ | -------- | --------------------------------------------------------- |
+| type      | string | Yes      | OTP request type. Accepted values: `"phone"` or `"email"` |
+
+#### **Example**
+
+```json
+{
+  "type": "phone"
+}
+```
+
+## **Response**
+
+### Success (HTTP 200 OK / 201 Created)
+
+```json
+{
+  "message": "Success"
+}
+```
+
+### Error Responses
+
+| Status Code | Description                     | Example Response       |
+| ----------- | ------------------------------- | ---------------------- |
+| 400         | Missing or invalid `type` value | `{ "error": "error" }` |
+| 500         | Internal server error           | `{ "error": "error" }` |
+
+## POST /register/personal-details
+
+### POST {BASE_URL}/register/personal-details
+
+---
+
+## **Description**
+
+Submits personal details for a new user registration. This is typically the first step in a multi-step onboarding or verification flow.
+
+---
+
+## **Request**
+
+### **Headers**
+
+| Header       | Value            | Required | Description                                  |
+| ------------ | ---------------- | -------- | -------------------------------------------- |
+| Content-Type | application/json | Yes      | Indicates the request body is in JSON format |
+
+---
+
+### **Body Parameters**
+
+| Parameter   | Type   | Required | Description                         |
+| ----------- | ------ | -------- | ----------------------------------- |
+| firstName   | string | Yes      | User's first name                   |
+| lastName    | string | Yes      | User's last name                    |
+| gender      | string | Yes      | Gender identity                     |
+| email       | string | Yes      | Email address                       |
+| phoneNumber | string | Yes      | Full phone number with country code |
+| residency   | string | Yes      | User's residency (e.g., country)    |
+
+#### **Example**
+
+```json
+{
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "gender": "female",
+  "email": "jane.doe@example.com",
+  "phoneNumber": "+1234567890",
+  "residency": "USA"
+}
+```
+
+## **Response**
+
+### Success (HTTP 200 OK / 201 Created)
+
+```json
+{
+  "message": "Success"
+}
+```
+
+### Error Responses
+
+| Status Code | Description                             | Example Response       |
+| ----------- | --------------------------------------- | ---------------------- |
+| 400         | Missing or invalid fields               | `{ "error": "error" }` |
+| 409         | User already registered with this email | `{ "error": "error" }` |
+| 500         | Internal server error                   | `{ "error": "error" }` |

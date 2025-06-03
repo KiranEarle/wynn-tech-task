@@ -1,13 +1,20 @@
 "use client";
+import { useState } from "react";
 
 import Text from "@components/atoms/Text";
 import Button from "@components/atoms/Button";
 
+import { emailRegex } from "@constance/regex";
+
+import submitEmailSubscription from "@services/submitEmailSubscription";
+
 import style from "./newsletter-subscription.module.css";
 
 const NewsletterSubscription = () => {
-  const onClick = (e) => {
-    console.log(e);
+  const [email, setEmail] = useState("");
+  const onClick = async () => {
+    if (!emailRegex.test(email)) return;
+    submitEmailSubscription(email);
   };
   return (
     <div className={style.Newsletter}>
@@ -26,7 +33,10 @@ const NewsletterSubscription = () => {
         </div>
         <div className={style.Newsletter_content}>
           <form className={style.Newsletter_email}>
-            <input placeholder="Your email address" />
+            <input
+              placeholder="Your email address"
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <Button
               testId="newsletter"
               label="Join The Newsletter"
