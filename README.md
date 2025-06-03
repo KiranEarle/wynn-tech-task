@@ -28,6 +28,13 @@ npm run test:coverage
 yarn test:coverage
 ```
 
+Runtime: Node@22.14.0
+
+```bash
+# has an .nvmrc file with the version there, run:
+nvm use
+```
+
 # Technical decisions
 
 The app is built using:
