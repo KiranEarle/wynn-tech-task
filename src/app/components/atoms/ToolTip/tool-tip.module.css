@@ -1,0 +1,57 @@
+.Tooltip_Container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 20px;
+}
+
+.Tooltip {
+  position: absolute;
+  background-color: var(--color-tool-tip-grey);
+  color: var(--font-white);
+  padding: 6px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 100;
+}
+
+.icon path {
+  fill: var(--color-tool-tip-grey);
+}
+
+.Tooltip_Container:hover .Tooltip {
+  opacity: 1;
+}
+
+/* Position Variants */
+.top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 6px;
+}
+
+.bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+}
+
+.left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 6px;
+}
+
+.right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 6px;
+}

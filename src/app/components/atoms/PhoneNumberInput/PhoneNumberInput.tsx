@@ -3,6 +3,8 @@
 
 import { useState, useRef, useEffect } from "react";
 
+import Tooltip from "@components/atoms/ToolTip";
+
 import phoneNumberLocals from "@resources/phoneNumberLocals";
 
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
@@ -21,10 +23,20 @@ export type PhoneNumberInputProps = {
     number: { number: string } & WynnRegistrationsApp.PhoneNumberFieldData
   ) => void;
   isValid?: string;
+  tooltip?: string;
 } & React.SelectHTMLAttributes<HTMLInputElement>;
 
 const PhoneNumberInput = (props: PhoneNumberInputProps) => {
-  const { id, label, required, onChange, onBlur, isValid = "", value } = props;
+  const {
+    id,
+    label,
+    required,
+    onChange,
+    onBlur,
+    isValid = "",
+    value,
+    tooltip,
+  } = props;
 
   const [selectCountry, setSelectCountry] = useState(phoneNumberLocals[0]);
   const [searchLocal, setSearchLocal] = useState("");
@@ -69,6 +81,11 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
       <label className={style.Phone_number_field}>
         <label htmlFor={id} className={style.Phone_number_field_label}>
           {label} {required ? "*" : ""}
+          {tooltip && (
+            <div className={style.Phone_field_label_tooltip}>
+              <Tooltip text={tooltip} />
+            </div>
+          )}
         </label>
         <div
           className={`${style.Phone_number_field_section} ${style[isValid]}`}

@@ -52,6 +52,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
             label={formData.firstName.label}
             value={formData.firstName.value}
             isValid={formData.firstName.isValid}
+            tooltip="Enter first name"
             onChange={(e) => inputOnChange("firstName", e.target.value)}
             pattern="[A-Za-z]*"
             placeholder="Enter first name..."
@@ -65,6 +66,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
             label={formData.lastName.label}
             value={formData.lastName.value}
             isValid={formData.lastName.isValid}
+            tooltip="Enter last name"
             onChange={(e) => inputOnChange("lastName", e.target.value)}
             placeholder="Enter last name..."
             required
@@ -82,6 +84,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           isValid={formData.gender.isValid}
           value={formData.gender.value}
           options={genders}
+          tooltip="Select gender"
           onChange={(e) => inputOnChange("gender", e.target.value)}
           onBlur={(e) => inputValidation("gender", e.target.value, textRegex)}
         />
@@ -93,6 +96,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           isValid={formData.residency.isValid}
           value={formData.residency.value}
           options={countries}
+          tooltip="Select residency"
           onChange={(e) => inputOnChange("residency", e.target.value)}
           onBlur={(e) =>
             inputValidation("residency", e.target.value, textRegex)
@@ -113,6 +117,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           isValid={formData.email.isValid}
           onChange={(e) => inputOnChange("email", e.target.value)}
           onBlur={(e) => inputValidation("email", e.target.value, emailRegex)}
+          tooltip="Enter email"
           type="email"
           placeholder="Enter email address..."
           required
@@ -124,6 +129,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           id="phoneNumber"
           value={formData.phoneNumber.value}
           isValid={formData.phoneNumber.isValid}
+          tooltip="Select phone number"
           onChange={(numberDetails) => {
             const { countryCode, number } = numberDetails;
             inputOnChangePhoneNumber(countryCode, number);

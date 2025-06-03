@@ -3,6 +3,8 @@
 
 import { useState, useRef, useEffect } from "react";
 
+import Tooltip from "@components/atoms/ToolTip";
+
 import style from "./select-field.module.css";
 
 export type SelectFieldProps = {
@@ -10,6 +12,7 @@ export type SelectFieldProps = {
   placeholder?: string;
   isValid?: string;
   options?: string[];
+  tooltip?: string;
 } & React.SelectHTMLAttributes<HTMLInputElement>;
 
 const SelectField = (props: SelectFieldProps) => {
@@ -22,6 +25,7 @@ const SelectField = (props: SelectFieldProps) => {
     onChange,
     onBlur,
     isValid = "",
+    tooltip,
     value,
   } = props;
   const [isOpen, setIsOpen] = useState(false);
@@ -80,6 +84,11 @@ const SelectField = (props: SelectFieldProps) => {
       >
         <label htmlFor={id} className={style.Select_field_label}>
           {label} {required ? "*" : ""}
+          {tooltip && (
+            <div className={style.Select_field_label_tooltip}>
+              <Tooltip text={tooltip} />
+            </div>
+          )}
         </label>
         <input
           type="text"
