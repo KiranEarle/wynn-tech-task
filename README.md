@@ -36,7 +36,7 @@ The app is built using:
 
 - Easy to build SSR single page applications
 - It is a React framework
-- Provides a lot iif inbuilt features that make developing and deploying the application easy.
+- Provides a lot of inbuilt features that make developing and deploying the application easy.
 
 ### React
 
@@ -52,7 +52,7 @@ Because it was a small application I just went with CSS Modules. The reason for 
 
 ### Test
 
-Using Jest and React Testing Library write unit tests.
+Using Jest and React Testing Library write for unit tests.
 
 # Endpoints
 
