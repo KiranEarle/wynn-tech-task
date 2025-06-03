@@ -1,6 +1,6 @@
 import { createElement } from "react";
 
-import "./text.css";
+import style from "./text.module.css";
 
 export type TextProp = {
   type?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
@@ -17,7 +17,9 @@ const Text = ({
   className = "",
   decoration = "",
 }: TextProp) => {
-  const textDecoration = decoration ? `${priority}-${decoration}` : "";
+  const textDecoration = decoration
+    ? `${style[`${priority}_${decoration}`]}`
+    : "";
 
   if (textDecoration) {
     return createElement(
@@ -26,7 +28,7 @@ const Text = ({
       createElement(
         type,
         {
-          className: `Text-${type}-${priority}`,
+          className: `${style[`Text_${type}_${priority}`]}`,
         },
         text
       )
@@ -35,7 +37,7 @@ const Text = ({
 
   return createElement(
     type,
-    { className: `Text-${type}-${priority} ${className}` },
+    { className: `${style[`Text_${type}_${priority}`]} ${className}` },
     text
   );
 };

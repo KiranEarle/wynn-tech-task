@@ -1,123 +1,123 @@
-.Text-h1-heading {
+.Text_h1_heading {
   font-size: var(--font-size-4xl);
   font-family: var(--font-big-caslon);
   font-weight: inherit;
 }
 
-.Text-h1-normal {
+.Text_h1_normal {
   font-size: var(--font-size-4xl);
   font-family: var(--font-avenir-lt);
   font-weight: inherit;
 }
 
-.Text-h2-heading {
+.Text_h2_heading {
   font-size: var(--font-size-2xl);
   font-family: var(--font-big-caslon);
   font-weight: inherit;
 }
 
-.Text-h2-normal {
+.Text_h2_normal {
   font-size: var(--font-size-2xl);
   font-family: var(--font-avenir-lt);
   font-weight: inherit;
 }
 
-.Text-h3-heading {
+.Text_h3_heading {
   font-size: var(--font-size-lg);
   font-family: var(--font-big-caslon);
   font-weight: inherit;
 }
 
-.Text-h3-normal {
+.Text_h3_normal {
   font-size: var(--font-size-lg);
   font-family: var(--font-avenir-lt);
   font-weight: inherit;
 }
 
-.Text-h4-heading {
+.Text_h4_heading {
   font-size: var(--font-size-md);
   font-family: var(--font-big-caslon);
   font-weight: inherit;
 }
 
-.Text-h4-normal {
+.Text_h4_normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
   font-weight: inherit;
 }
 
-.Text-h5-heading {
+.Text_h5_heading {
   font-size: var(--font-size-md);
   font-family: var(--font-big-caslon);
   font-weight: inherit;
 }
 
-.Text-h5-normal {
+.Text_h5_normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
   font-weight: inherit;
 }
 
-.Text-h6-heading {
+.Text_h6_heading {
   font-size: var(--font-size-md);
   font-family: var(--font-big-caslon);
   font-weight: inherit;
 }
 
-.Text-6-normal {
+.Text_6_normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
   font-weight: inherit;
 }
 
-.Text-p-heading {
+.Text_p_heading {
   font-size: var(--font-size-md);
   font-family: var(--font-big-caslon);
 }
 
-.Text-p-normal {
+.Text_p_normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
   font-weight: inherit;
 }
 
-.Text-span-heading {
+.Text_span_heading {
   font-size: var(--font-size-md);
   font-family: var(--font-big-caslon);
   font-weight: inherit;
 }
 
-.Text-span-normal {
+.Text_span_normal {
   font-size: var(--font-size-md);
   font-family: var(--font-avenir-lt);
   font-weight: inherit;
 }
 
-.heading-underline {
+.heading_underline {
   margin-bottom: var(--space-1);
 }
 
-.heading-underline > h1,
-.heading-underline > h2,
-.heading-underline > h3,
-.heading-underline > h4,
-.heading-underline > h5,
-.heading-underline > h6,
-.heading-underline > p,
-.heading-underline > span {
+.heading_underline > h1,
+.heading_underline > h2,
+.heading_underline > h3,
+.heading_underline > h4,
+.heading_underline > h5,
+.heading_underline > h6,
+.heading_underline > p,
+.heading_underline > span {
   padding-bottom: var(--space-1);
   position: relative;
   display: inline;
 }
 
-.heading-underline > h1::after,
-.heading-underline > h2::after,
-.heading-underline > h3::after,
-.heading-underline > h4::after,
-.heading-underline > h5::after,
-.heading-underline > h6::after,
-.heading-underline > p::after,
-.heading-underline > span::after {
+.heading_underline > h1::after,
+.heading_underline > h2::after,
+.heading_underline > h3::after,
+.heading_underline > h4::after,
+.heading_underline > h5::after,
+.heading_underline > h6::after,
+.heading_underline > p::after,
+.heading_underline > span::after {
   content: "";
   position: absolute;
   left: 0;
@@ -127,22 +127,22 @@
   background-color: var(--color-black);
 }
 
-.heading-bold {
+.heading_bold {
   font-weight: 700;
 }
 
-.normal-underline h1,
-.normal-underline h2,
-.normal-underline h3,
-.normal-underline h4,
-.normal-underline h5,
-.normal-underline h6,
-.normal-underline p,
-.normal-underline span {
+.normal_underline h1,
+.normal_underline h2,
+.normal_underline h3,
+.normal_underline h4,
+.normal_underline h5,
+.normal_underline h6,
+.normal_underline p,
+.normal_underline span {
   border-bottom: 1px solid var(--color-black);
   display: inline;
 }
 
-.normal-bold {
+.normal_bold {
   font-weight: 700;
 }

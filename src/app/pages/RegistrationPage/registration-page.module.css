@@ -1,16 +1,16 @@
-.Registration-page {
+.Registration_page {
   width: 100%;
   max-width: 630px;
   margin: auto;
   padding: var(--space-12) var(--space-6);
 }
 
-.Registration-page-top-content {
+.Registration_page_top_content {
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--space-7);
 }
 
-.Registration-page-title {
+.Registration_page_title {
   margin-bottom: var(--font-size-xl);
 }

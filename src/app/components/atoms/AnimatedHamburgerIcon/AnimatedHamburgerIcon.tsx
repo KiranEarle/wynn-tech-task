@@ -1,4 +1,4 @@
-import "./animated-hamburger-icon.css";
+import style from "./animated-hamburger-icon.module.css";
 
 export type AnimatedHamburgerIconProps = {
   isOpen: boolean;
@@ -13,8 +13,8 @@ const AnimatedHamburgerIcon = ({
     onClick(!isOpen);
   };
   return (
-    <button className="Hamburger" onClick={handleOnClick}>
-      <div className={`Hamburger-icon ${isOpen ? "active" : ""}`}>
+    <button className={style.Hamburger} onClick={handleOnClick}>
+      <div className={`${style.Hamburger_icon} ${isOpen ? style.active : ""}`}>
         <span></span>
         <span></span>
         <span></span>

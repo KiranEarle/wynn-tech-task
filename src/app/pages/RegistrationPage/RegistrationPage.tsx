@@ -9,7 +9,7 @@ import useRegistrationPage from "@hooks/useRegistrationPage";
 
 import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 
-import "./registration-page.css";
+import style from "./registration-page.module.css";
 
 const RegistrationPage = () => {
   const {
@@ -31,9 +31,9 @@ const RegistrationPage = () => {
   } = useRegistrationPage();
 
   return (
-    <div className="Registration-page">
-      <div className="Registration-page-top-content">
-        <div className="Registration-page-content">
+    <div className={style.Registration_page}>
+      <div className={style.Registration_page_top_content}>
+        <div>
           <Text
             type="h1"
             text="Registration"
