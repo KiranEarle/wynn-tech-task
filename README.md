@@ -13,6 +13,11 @@ Github: https://github.com/KiranEarle/wynn-tech-task
 First, run the development server:
 
 ```bash
+# Run to install dependence's
+npm install
+# or
+yarn
+
 # To run locally on http://localhost:3000
 npm run dev
 # or
