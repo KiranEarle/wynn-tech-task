@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:coverage": "jest --no-cache --coverage"
+    "test:coverage": "jest --no-cache --coverage --silent"
   },
   "dependencies": {
     "@svgr/webpack": "^8.1.0",

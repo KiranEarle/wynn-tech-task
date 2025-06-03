@@ -91,6 +91,7 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
           className={`${style.Phone_number_field_section} ${style[isValid]}`}
         >
           <button
+            data-testid="flag"
             onClick={(e) => {
               e.preventDefault();
               setIsOpen((prev) => !prev);
@@ -163,6 +164,7 @@ const PhoneNumberInput = (props: PhoneNumberInputProps) => {
                     className={style.Phone_number_field_item}
                     id={selectCountry.code}
                     type="button"
+                    data-testid={country.label}
                     value={country.label}
                     onClick={() => {
                       setSelectCountry(country);

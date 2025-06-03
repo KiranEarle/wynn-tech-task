@@ -6,14 +6,14 @@ describe("Text component", () => {
     render(<Text />);
     const element = screen.getByRole("paragraph");
     expect(element.tagName.toLowerCase()).toBe("p");
-    expect(element).toHaveClass("Text-p-normal");
+    expect(element).toHaveClass("Text_p_normal");
   });
 
   it("renders specified text and type", () => {
     render(<Text type="h1" text="Welcome" />);
     const element = screen.getByText("Welcome");
     expect(element.tagName.toLowerCase()).toBe("h1");
-    expect(element).toHaveClass("Text-h1-normal");
+    expect(element).toHaveClass("Text_h1_normal");
   });
 
   it("applies custom priority and className", () => {
@@ -27,7 +27,7 @@ describe("Text component", () => {
     );
     const element = screen.getByText("Hello");
     expect(element.tagName.toLowerCase()).toBe("span");
-    expect(element).toHaveClass("Text-span-heading");
+    expect(element).toHaveClass("Text_span_heading");
     expect(element).toHaveClass("custom-class");
   });
 
@@ -37,7 +37,7 @@ describe("Text component", () => {
       render(<Text type={type} text={`Title ${type}`} />);
       const element = screen.getByText(`Title ${type}`);
       expect(element.tagName.toLowerCase()).toBe(type);
-      expect(element).toHaveClass(`Text-${type}-normal`);
+      expect(element).toHaveClass(`Text_${type}_normal`);
     });
   });
 });

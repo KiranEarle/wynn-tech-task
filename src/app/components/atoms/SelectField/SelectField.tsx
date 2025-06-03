@@ -94,6 +94,7 @@ const SelectField = (props: SelectFieldProps) => {
           type="text"
           className={`${style.Select_field_internal} ${style[isValid]}`}
           placeholder={placeholder}
+          data-testid="select-input-field"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               setIsOpen((prev) => !prev);
