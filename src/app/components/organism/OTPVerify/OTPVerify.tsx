@@ -15,6 +15,7 @@ export type OTPVerifyProps = {
   onSendOTP: () => Promise<void>;
   handleOTPOnChange: (e) => void;
   otpCode: string;
+  isSubmitForm: boolean;
 };
 
 const OTPVerify = ({
@@ -23,6 +24,7 @@ const OTPVerify = ({
   onSendOTP,
   otpCode,
   handleOTPOnChange,
+  isSubmitForm,
 }: OTPVerifyProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -43,7 +45,12 @@ const OTPVerify = ({
   };
 
   return (
-    <OTPFormLayout backButton={handleBackButton} onSubmit={handleVerifyCode}>
+    <OTPFormLayout
+      isSubmitForm={isSubmitForm}
+      backButton={handleBackButton}
+      onSubmit={handleVerifyCode}
+      loadingText="Verifying"
+    >
       <Text
         type="h6"
         text="Please check your email"

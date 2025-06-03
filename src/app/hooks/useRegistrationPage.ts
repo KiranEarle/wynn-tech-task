@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import submitPersonalDetails from "@services/submitPersonalDetails";
 import submitOTPRequestType from "@services/submitOTPRequestType";
+import submitOTPCode from "@services/submitOTPCode";
 
 import setViewToTop from "@helpers/setViewToTop";
 
@@ -15,6 +16,8 @@ import WynnRegistrationsApp from "@app-types/WynnRegistrationsApp.types";
 const useRegistrationPage = () => {
   const [pageState, setPageState] =
     useState<WynnRegistrationsApp.PageStates>(personalDetails);
+
+  const [isSubmitForm, setIsSubmitForm] = useState(false);
 
   const [personalDataForm, setPersonalDataFrom] = useState(initialPersonalData);
   const [isTermChecked, setIsTermsCheck] = useState({
@@ -111,6 +114,8 @@ const useRegistrationPage = () => {
       return;
     }
 
+    setIsSubmitForm(true);
+
     try {
       await submitPersonalDetails({
         firstName: personalDataForm.firstName.value,
@@ -120,19 +125,28 @@ const useRegistrationPage = () => {
         phoneNumber: personalDataForm.phoneNumber.fullNumber,
         residency: personalDataForm.residency.value,
       });
+      setIsSubmitForm(false);
+
       setPageState(otpSendCode);
       setViewToTop();
     } catch (e) {
+      setIsSubmitForm(false);
       console.error(e);
     }
   };
 
   const onSendOTP = async () => {
+    setIsSubmitForm(true);
+
     try {
       await submitOTPRequestType(sendOTPOption);
+      setIsSubmitForm(false);
+
       setPageState(otpVerify);
       setViewToTop();
     } catch (e) {
+      setIsSubmitForm(false);
+
       console.error(e);
     }
   };
@@ -143,7 +157,17 @@ const useRegistrationPage = () => {
   };
 
   const onVerifyCode = async () => {
-    console.log("submit verification code", otpCode);
+    if (otpCode.length < 4) return;
+
+    setIsSubmitForm(true);
+
+    try {
+      await submitOTPCode(otpCode);
+      setIsSubmitForm(false);
+    } catch (e) {
+      console.error(e);
+      setIsSubmitForm(true);
+    }
   };
 
   return {
@@ -162,6 +186,7 @@ const useRegistrationPage = () => {
     setSendOTPOption,
     handleOTPOnChange,
     otpCode,
+    isSubmitForm,
   };
 };
 

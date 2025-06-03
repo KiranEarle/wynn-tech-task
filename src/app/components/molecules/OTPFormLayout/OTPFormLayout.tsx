@@ -7,12 +7,16 @@ export type OTPFormLayoutProps = {
   onSubmit: (e: unknown) => Promise<void>;
   backButton: () => void;
   children: React.ReactNode[] | React.ReactNode;
+  isSubmitForm: boolean;
+  loadingText: string;
 };
 
 const OTPFormLayout = ({
   children,
   onSubmit,
   backButton,
+  isSubmitForm,
+  loadingText,
 }: OTPFormLayoutProps) => {
   return (
     <form>
@@ -26,7 +30,12 @@ const OTPFormLayout = ({
       <div className={style.OTPLayout_section}>{children}</div>
       <div className={style.OTPLayout_cta}>
         <Button label="Back" priority="secondary" onClick={backButton} />
-        <Button label="Next" onClick={onSubmit} />
+        <Button
+          isLoading={isSubmitForm}
+          loadingText={loadingText}
+          label="Next"
+          onClick={onSubmit}
+        />
       </div>
     </form>
   );

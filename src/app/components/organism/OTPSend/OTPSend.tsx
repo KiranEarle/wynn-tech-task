@@ -17,6 +17,7 @@ export type OTPSendProps = {
     SetStateAction<WynnRegistrationsApp.OTSRequestTypes>
   >;
   sendOTPOption: WynnRegistrationsApp.OTSRequestTypes;
+  isSubmitForm: boolean;
 };
 
 const OTPSend = ({
@@ -24,6 +25,7 @@ const OTPSend = ({
   setPageState,
   sendOTPOption,
   setSendOTPOption,
+  isSubmitForm,
 }: OTPSendProps) => {
   const handleBackButton = () => {
     setPageState(personalDetails);
@@ -33,7 +35,12 @@ const OTPSend = ({
   };
 
   return (
-    <OTPFormLayout backButton={handleBackButton} onSubmit={handleSendOption}>
+    <OTPFormLayout
+      isSubmitForm={isSubmitForm}
+      backButton={handleBackButton}
+      onSubmit={handleSendOption}
+      loadingText="Sending code"
+    >
       <Text
         type="h6"
         text="Send Code"

@@ -25,6 +25,7 @@ type RegistrationFormProps = {
   onSubmit: () => Promise<void>;
   onCheckTerms: (checked: boolean) => void;
   isTermChecked: { value: boolean; isValid: string };
+  isSubmitForm: boolean;
 };
 
 const RegistrationForm = (props: RegistrationFormProps) => {
@@ -36,6 +37,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
     inputOnChangePhoneNumber,
     onCheckTerms,
     isTermChecked,
+    isSubmitForm,
   } = props;
   return (
     <form className={style.Registration_form}>
@@ -155,7 +157,12 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           checked={isTermChecked.value}
           onClick={(value) => onCheckTerms(!value)}
         />
-        <Button label="Next" onClick={() => onSubmit()} />
+        <Button
+          isLoading={isSubmitForm}
+          loadingText="Submitting"
+          label="Next"
+          onClick={() => onSubmit()}
+        />
       </div>
     </form>
   );
