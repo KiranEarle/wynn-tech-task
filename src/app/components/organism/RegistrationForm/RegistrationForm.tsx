@@ -40,7 +40,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
     isSubmitForm,
   } = props;
   return (
-    <form className={style.Registration_form}>
+    <form className={style.Registration_form} onSubmit={() => onSubmit()}>
       <div className={style.Registration_form_personal_info}>
         <Text
           type="h2"
@@ -161,6 +161,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
           isLoading={isSubmitForm}
           loadingText="Submitting"
           label="Next"
+          type="submit"
           onClick={() => onSubmit()}
         />
       </div>
