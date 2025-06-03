@@ -6,6 +6,8 @@ Project: Wynn resort tech challenge
 
 Live version of the app on my netlify account (to see it working in prod): https://wynn-tech-task.netlify.app
 
+Github: https://github.com/KiranEarle/wynn-tech-task
+
 # Getting Started
 
 First, run the development server:
